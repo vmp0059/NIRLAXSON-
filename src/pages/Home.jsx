@@ -1,14 +1,34 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-
+// import ProductCarousel from "../components/CarouselProduct"; // sliding products
+import ProductSlider from "../components/ProductSlider";
+import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 
 function Home() {
   return (
     <>
-      <Navbar />
-      <Hero />
-      
+      {/* Navbar */}
+      {/* <Navbar /> */}
+
+      <div>
+      <Hero/>
+      </div>
+       <Welcome />
+
+      {/* Product Carousel / Highlights
+      <section className="product-highlights">
+        <h2>Our Featured Products</h2>
+        <ProductCarousel />
+      </section> */}
+
+      <ProductSlider />
+
+
+
+     
+
+      {/* Footer */}
       <Footer />
     </>
   );

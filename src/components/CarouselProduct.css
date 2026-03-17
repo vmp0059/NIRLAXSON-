@@ -1,0 +1,25 @@
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  animation: slide 15s linear infinite;
+}
+
+.carousel-item img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Sliding animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* adjust depending on number of items */
+}

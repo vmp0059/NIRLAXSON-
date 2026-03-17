@@ -1,10 +1,21 @@
+import heroImage from "../assets/heroImage.jpeg";
+import "./Hero.css";
+
 function Hero() {
   return (
-    <section className="hero">
-      <h1>Process Equipment Solutions</h1>
-      <p>Reliable Industrial Machinery for Modern Manufacturing</p>
-      <button>Explore Products</button>
-    </section>
+    <div
+      className="hero-banner"
+      style={{ backgroundImage: `url(${heroImage})` }}
+    >
+      <div className="hero-overlay">
+        <h4>Founded in 2015</h4>
+        <h1>Nirlaxson Industries</h1>
+        <p>
+          Delivering industrial innovation and machinery solutions for
+          modern manufacturing needs.
+        </p>
+      </div>
+    </div>
   );
 }
 

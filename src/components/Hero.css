@@ -1,0 +1,51 @@
+/* HERO BANNER */
+.hero-banner {
+  width: 100%;
+  height: 85vh;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+/* DARK OVERLAY */
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+/* CENTER BOX */
+
+.hero-overlay {
+  position: relative;
+  background: rgba(255,255,255,0.75);
+  padding: 50px 70px;
+  text-align: center;
+  max-width: 800px;
+  z-index: 2;
+}
+
+.hero-overlay h4 {
+  color: #444;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.hero-overlay h1 {
+  color: #002f6c;
+  font-size: 58px;
+  margin-bottom: 20px;
+}
+
+.hero-overlay p {
+  font-size: 24px;
+  color: #222;
+  line-height: 1.5;
+}

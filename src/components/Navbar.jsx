@@ -1,20 +1,28 @@
-import logo from "../assets/blue_logo.jpeg"; // adjust path to your logo file
- 
+
+import { Link } from "react-router-dom"; // import Link
+import logo from "../assets/blue_logo.jpeg"; // your logo path
+
 function Navbar() {
   return (
     <nav className="navbar">
- 
       <img src={logo} alt="Nirlaxson Logo" className="nav-logo" />
- 
+
       <ul className="nav-links">
-        <li><a href="#">Home Page</a></li>
-        <li><a href="#">Company Profile</a></li>
-        <li><a href="#">Our Products</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li>
+          <Link to="/">Home Page</Link>
+        </li>
+        <li>
+          <Link to="/company-profile">Company Profile</Link>
+        </li>
+        <li>
+          <Link to="/products">Our Products</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact Us</Link>
+        </li>
       </ul>
- 
     </nav>
   );
 }
- 
+
 export default Navbar;
