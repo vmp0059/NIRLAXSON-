@@ -1,17 +1,25 @@
-body {
-  margin: 0;
-  font-family: sans-serif;
+/* NOTE: body base styles are handled in index.css via CSS variables */
+
+/* ============================================================
+   PAGE WRAPPER  (wraps every routed page below the Navbar)
+   ============================================================ */
+
+.page-wrapper {
+  flex: 1;                  /* pushes Footer to the bottom inside #root flexbox */
+  width: 100%;
 }
 
+/* Legacy utility kept for any page that uses .main-content directly */
 .main-content {
   padding: 48px 40px;
 }
+
 /* ============================================================
    TOP BAR
    ============================================================ */
 
 .top-bar {
-  background: #002f6c;
+  background: var(--primary-blue);   /* was hardcoded #002f6c */
   color: #ffffff;
   font-size: 13px;
   padding: 8px 5%;
@@ -22,13 +30,15 @@ body {
 
 /* CTA BUTTON */
 .cta-btn {
-  background: #FFD100;
-  color: #002f6c;
+  background: var(--accent-yellow);  /* was hardcoded #FFD100 */
+  color: var(--primary-blue);        /* was hardcoded #002f6c */
   padding: 6px 14px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
-  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-main);
   transition: all 0.25s ease;
 }
 
