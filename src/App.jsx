@@ -1,41 +1,52 @@
-import Home from "./pages/Home";
-import SplashScreen from "./components/SplashScreen";
-import Navbar from "./components/Navbar";
+import { useState } from "react";
+
+import SplashScreen   from "./components/SplashScreen";
+import Navbar         from "./components/Navbar";
+import Footer         from "./components/Footer";
+import Home           from "./pages/Home";
+import CompanyProfile from "./pages/CompanyProfile";
+import Products    from "./pages/Products";
+import ContactUs      from "./pages/ContactUs";
+
 import "./App.css";
 
 function App() {
 
-return (
+  const [currentPage, setCurrentPage] = useState("home");
 
-<>
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":     return <Home     setCurrentPage={setCurrentPage}/>;
+      case "profile":  return <CompanyProfile/>;
+      case "products": return <Products setCurrentPage={setCurrentPage}/>;
+      case "contact":  return <ContactUs/>;
+      default:         return <Home     setCurrentPage={setCurrentPage}/>;
+    }
+  };
 
-<SplashScreen/>
+  return (
+    <>
+      <SplashScreen/>
 
-<div className="top-bar">
+      <div className="top-bar">
+        <div>Welcome to Nirlaxson Industries</div>
+        <div>
+          <a href="#" className="cta-btn"
+            onClick={(e) => { e.preventDefault(); setCurrentPage("contact"); }}>
+            Talk With Expert
+          </a>
+        </div>
+      </div>
 
-<div>Welcome to Nirlaxson Industries</div>
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
 
-<div>
-<a href="#" className="cta-btn">
-Talk With Expert
-</a>
-</div>
+      <div className="page-wrapper">
+        {renderPage()}
+      </div>
 
-</div>
-
-<Navbar/>
-
-<div className="main-content">
-
-<h2>Main Website Content</h2>
-<p>Your website starts here.</p>
-
-</div>
-
-</>
-
-);
-
+      <Footer setCurrentPage={setCurrentPage}/>
+    </>
+  );
 }
 
 export default App;

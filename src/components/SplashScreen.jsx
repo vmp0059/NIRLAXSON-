@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "../assets/image.png";
 import "../App.css";
-
+import "./SplashScreen.css";
 export default function SplashScreen() {
 
 const [visible,setVisible] = useState(true);
