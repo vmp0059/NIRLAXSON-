@@ -1,31 +1,54 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import SplashScreen from "./components/SplashScreen";
-import Navbar from "./components/Navbar";
+import { useState } from "react";
+
+import SplashScreen   from "./components/SplashScreen";
+import Navbar         from "./components/Navbar";
+import Footer         from "./components/Footer";
+import Home           from "./pages/Home";
+import CompanyProfile from "./pages/CompanyProfile";
+import Products       from "./pages/Products";
+import ContactUs      from "./pages/ContactUs";
+
 import "./App.css";
 
 function App() {
+
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":     return <Home           setCurrentPage={setCurrentPage} />;
+      case "profile":  return <CompanyProfile setCurrentPage={setCurrentPage} />;
+      case "products": return <Products       setCurrentPage={setCurrentPage} />;
+      case "contact":  return <ContactUs      setCurrentPage={setCurrentPage} />;
+      default:         return <Home           setCurrentPage={setCurrentPage} />;
+    }
+  };
+
   return (
-    <Router>
+    <>
       <SplashScreen />
 
       <div className="top-bar">
         <div>Welcome to Nirlaxson Industries</div>
         <div>
-          <a href="#" className="cta-btn">
+          {/* Use a <button> instead of <a href="#"> for semantic correctness */}
+          <button
+            className="cta-btn"
+            onClick={() => setCurrentPage("contact")}
+          >
             Talk With Expert
-          </a>
+          </button>
         </div>
       </div>
 
-      <Navbar />
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-      </Routes>
-    </Router>
+      <div className="page-wrapper">
+        {renderPage()}
+      </div>
+
+      <Footer setCurrentPage={setCurrentPage} />
+    </>
   );
 }
 

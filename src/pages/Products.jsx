@@ -1,10 +1,10 @@
 
-import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 
 function Products() {
   return (
     <>
+      
     
 
       <h1>Our Products</h1>
@@ -14,7 +14,7 @@ function Products() {
         <ProductCard title="Coating Plant System" />
       </div>
 
-      <Footer />
+     
     </>
   );
 }

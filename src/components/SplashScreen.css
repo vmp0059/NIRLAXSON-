@@ -1,0 +1,100 @@
+/* SPLASH SCREEN */
+
+#intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #0b0bb5,
+    #1a3cff,
+    #0b0bb5
+  );
+
+  z-index: 9999;
+
+  animation: fadeOut 1.4s ease 3.6s forwards;
+}
+
+/* GLASS PANEL */
+
+.intro-content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(20,40,255,0.25);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  box-shadow: inset 0 0 60px rgba(255,255,255,0.15);
+}
+
+/* LOGO */
+
+.logo {
+  width: 170px;
+
+  opacity: 0;
+  transform: translateY(60px);
+
+  animation: logoReveal 1.8s forwards;
+}
+
+/* TEXT */
+
+.company-name {
+  margin-top: 18px;
+
+  color: white;
+  letter-spacing: 4px;
+  font-size: 28px;
+
+  opacity: 0;
+
+  animation: textReveal 1.6s 0.4s forwards;
+}
+
+/* ANIMATIONS */
+
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,178 @@
+/* ── FOOTER BASE ── */
+
+.footer {
+  background: #0b0bb5;
+  color: #ffffff;
+  padding-top: 60px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ── GRID LAYOUT ── */
+
+.footer-container {
+  width: 90%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 40px;
+}
+
+/* ── COLUMNS ── */
+
+.footer-col h3 {
+  font-size: 18px;
+  margin-bottom: 18px;
+  position: relative;
+  color: #ffffff; /* ensure white */
+}
+
+.footer-col h3::after {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background: #FFD100;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+}
+
+/* ── TEXT ── */
+
+.footer-col p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: #ffffff; /* ensure white */
+}
+
+/* ── ICONS ── */
+
+.icon {
+  color: #FFD100;
+  margin-top: 4px;
+  min-width: 16px;
+}
+
+/* ── LISTS ── */
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* 🔥 IMPORTANT FIX */
+.footer-col ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.25s ease;
+  display: inline-block;
+}
+
+/* hover ONLY on links */
+.footer-col ul li a:hover {
+  color: #FFD100;
+}
+
+/* remove old hover (not needed now) */
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+/* ── SOCIAL ICONS ── */
+
+.socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  background: #ffffff;
+  color: #0b0bb5;
+
+  border-radius: 50%;
+  font-size: 16px;
+
+  transition: all 0.3s ease;
+}
+
+.socials a:hover {
+  background: #FFD100;
+  transform: translateY(-2px);
+}
+
+
+/* ── MAP ── */
+
+.map iframe {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* ── INQUIRY BAR ── */
+
+.inquiry-bar {
+  width: 60%;
+  margin: 50px auto 30px auto;
+
+  background: #FFD100;
+  padding: 15px;
+
+  border-radius: 50px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.inquiry-bar button {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1a1a2e;
+  transition: 0.2s;
+}
+
+.inquiry-bar button:hover {
+  transform: scale(1.05);
+}
+
+/* ── BOTTOM ── */
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+/* ── RESPONSIVE ── */
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-bar {
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+  }
+}

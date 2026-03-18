@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+
 import Hero from "../components/Hero";
 // import ProductCarousel from "../components/CarouselProduct"; // sliding products
 import ProductSlider from "../components/ProductSlider";
@@ -8,8 +8,7 @@ import Footer from "../components/Footer";
 function Home() {
   return (
     <>
-      {/* Navbar */}
-      {/* <Navbar /> */}
+      
 
       <div>
       <Hero/>
