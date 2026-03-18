@@ -27,8 +27,7 @@ function Home() {
 
      
 
-      {/* Footer */}
-      <Footer />
+      
     </>
   );
 }
