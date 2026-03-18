@@ -29,6 +29,8 @@ const Welcome = () => {
             cutting-edge technology, sustainable solutions, and tailored
             services for our clients worldwide.
           </p>
+
+          <button>Read More</button>
         </div>
 
       </div>
