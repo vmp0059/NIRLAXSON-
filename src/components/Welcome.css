@@ -1,50 +1,120 @@
-/* src/components/Welcome.css */
-
 .welcome {
-  width: 90%;
-  margin: auto;
-  padding: 60px 0;
+  width: 100%;
+  padding: 80px 6%;
+  background: #f7f7f7;
 }
 
 /* TITLE */
+
 .welcome-title {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 }
 
 .welcome-title h1 {
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 600;
-  font-family: "Poppins", Arial, sans-serif;
+  line-height: 1.35;
+  color: #222;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* IMAGE + CONTENT */
+/* MAIN SECTION */
+
 .welcome-container {
   display: flex;
   align-items: center;
-  max-width: 1100px;
+  justify-content: center;
+  gap: 70px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 /* IMAGE */
+
+/* IMAGE */
+
 .welcome-image {
   flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .welcome-image img {
-  width: 320px;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 620px;
+  height: 500px;
+  object-fit: cover;
   display: block;
+
+  border: 4px solid #03396c;
+
+  box-shadow:
+    12px 12px 22px rgba(0,0,0,0.28);
+
+  transition: transform 0.4s ease;
+}
+
+/* Hover effect */
+
+.welcome-image img:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    14px 14px 28px rgba(0,0,0,0.22);
 }
 
 /* TEXT */
+
 .welcome-content {
   flex: 1;
-  padding-left: 20px;
 }
 
 .welcome-content p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #555;
+  font-size: 22px;
+  line-height: 1.9;
+  color: #333;
+  max-width: 650px;
+}
+
+.welcome-content strong {
+  font-weight: 700;
+  color: #111;
+}
+
+/* BUTTON */
+
+.welcome-content button {
+  margin-top: 35px;
+  background: #FFD100;
+  border: none;
+  padding: 18px 55px;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.welcome-content button:hover {
+  background: #e6bf00;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .welcome-container {
+    flex-direction: column;
+  }
+
+  .welcome-title h1 {
+    font-size: 34px;
+  }
+
+  .welcome-image img {
+    height: auto;
+  }
+
+  .welcome-content p {
+    font-size: 18px;
+  }
 }
