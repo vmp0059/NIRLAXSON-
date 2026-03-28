@@ -1,7 +1,7 @@
 .welcome {
   width: 100%;
   padding: 80px 6%;
-  background: #f7f7f7;
+  background: var(--gray-50);           /* #F5F6FF — light blue-tinted bg */
 }
 
 /* TITLE */
@@ -12,10 +12,11 @@
 }
 
 .welcome-title h1 {
+  font-family: var(--font-display);     /* Syne */
   font-size: 48px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.35;
-  color: #222;
+  color: var(--blue-950);               /* #00013A */
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -33,8 +34,6 @@
 
 /* IMAGE */
 
-/* IMAGE */
-
 .welcome-image {
   flex: 1;
   display: flex;
@@ -48,20 +47,17 @@
   object-fit: cover;
   display: block;
 
-  border: 4px solid #03396c;
+  border: 4px solid var(--blue-900);    /* #000191 */
+  border-radius: var(--r-md);
 
-  box-shadow:
-    12px 12px 22px rgba(0,0,0,0.28);
+  box-shadow: 12px 12px 22px rgba(0, 1, 145, 0.18);
 
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
-/* Hover effect */
 
 .welcome-image img:hover {
   transform: translateY(-6px);
-  box-shadow:
-    14px 14px 28px rgba(0,0,0,0.22);
+  box-shadow: 14px 14px 28px rgba(0, 1, 145, 0.22);
 }
 
 /* TEXT */
@@ -71,32 +67,44 @@
 }
 
 .welcome-content p {
+  font-family: var(--font-body);        /* Outfit */
   font-size: 22px;
+  font-weight: 300;
   line-height: 1.9;
-  color: #333;
+  color: var(--gray-800);              /* #2A2A55 */
   max-width: 650px;
 }
 
 .welcome-content strong {
   font-weight: 700;
-  color: #111;
+  color: var(--blue-950);              /* #00013A */
 }
 
 /* BUTTON */
 
 .welcome-content button {
   margin-top: 35px;
-  background: #FFD100;
+  background: var(--yellow-500);        /* #FFD200 */
+  color: var(--dark);                   /* #0A0A1E */
   border: none;
   padding: 18px 55px;
-  font-size: 24px;
+  font-family: var(--font-body);
+  font-size: 18px;
   cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
+  font-weight: 600;
+  border-radius: var(--r-md);
+  letter-spacing: 0.3px;
+  transition: background 0.25s, transform 0.2s;
 }
 
 .welcome-content button:hover {
-  background: #e6bf00;
+  background: var(--yellow-400);        /* #FFE066 */
+  transform: translateY(-2px);
+}
+
+.welcome-content button:active {
+  background: var(--yellow-600);
+  transform: translateY(0);
 }
 
 /* MOBILE */

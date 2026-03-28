@@ -1,138 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap');
+
 /* GLOBAL RESET */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+:root {
+  /* Brand Blues */
+  --blue-950:  #000170;
+  --blue-900:  #000191;
+  --blue-800:  #0000CC;
+  --blue-700:  #1A1AFF;
+  --blue-600:  #4D4DFF;
+  --blue-500:  #8080FF;
+  --blue-400:  #B3B3FF;
+  --blue-200:  #DCDCFF;
+  --blue-100:  #EEEEFF;
+  --blue-50:   #F5F5FF;
 
-/* ROOT VARIABLES */
+  /* Golden Yellow */
+  --yellow-900: #806800;
+  --yellow-800: #B89400;
+  --yellow-700: #D4AB00;
+  --yellow-600: #F0C300;
+  --yellow-500: #FFD200;
+  --yellow-400: #FFE066;
+  --yellow-300: #FFEB99;
+  --yellow-100: #FFF8D6;
+  --yellow-50:  #FFFCF0;
 
-:root{
+  /* Neutrals */
+  --white:     #FFFFFF;
+  --gray-50:   #F5F6FF;
+  --gray-100:  #EAEAF5;
+  --gray-200:  #D0D0E8;
+  --gray-400:  #9494BB;
+  --gray-600:  #5C5C88;
+  --gray-800:  #2A2A55;
+  --gray-900:  #15153D;
+  --dark:      #000160;
 
---primary-blue:#0b0bb5;
---secondary-blue:#1a3cff;
---accent-yellow:#FFD100;
+  /* ─── Typography ─────────────────────────────────────────
+     --font-brand   → Orbitron   — company name only
+     --font-display → Exo 2      — headings, section titles, nav links
+     --font-body    → Outfit     — body copy, labels, captions
+  ──────────────────────────────────────────────────────── */
+  --font-brand:   'Orbitron', sans-serif;
+  --font-display: 'Exo 2', sans-serif;
+  --font-body:    'Outfit', sans-serif;
+  --font-family:  var(--font-body);
 
---text-dark:#222;
---text-light:#666;
-
---bg-white:#ffffff;
-
---shadow-soft:0 10px 20px rgba(0,0,0,0.08);
-
---font-main: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
+  /* Border Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
 }
 
+/* ─── Font Role Utilities ──────────────────────────────────
+   Apply these classes (or use the variables directly)
+   wherever each role is needed.
+──────────────────────────────────────────────────────────── */
 
-/* BODY */
-
-body{
-
-font-family:var(--font-main);
-
-background:var(--bg-white);
-
-color:var(--text-dark);
-
-line-height:1.6;
-
--webkit-font-smoothing:antialiased;
-
--moz-osx-font-smoothing:grayscale;
-
+/* Company name — navbar logo text, hero brand name, footer brand */
+.font-brand {
+  font-family: var(--font-brand);
+  letter-spacing: 0.08em;   /* Orbitron breathes better with tracking */
+  text-transform: uppercase;
 }
 
-
-/* ROOT CONTAINER */
-
-#root{
-
-width:100%;
-
-min-height:100vh;
-
-display:flex;
-
-flex-direction:column;
-
+/* Section headings, page titles, card titles, nav links */
+.font-display {
+  font-family: var(--font-display);
 }
 
-
-/* HEADINGS */
-
-h1,h2,h3,h4{
-
-font-weight:600;
-
-color:var(--text-dark);
-
+/* Body copy, descriptions, labels, inputs, captions */
+.font-body {
+  font-family: var(--font-body);
 }
 
-
-/* PARAGRAPHS */
-
-p{
-
-color:var(--text-light);
-
+/* ─── Base Defaults ──────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  background: var(--white);
 }
 
-
-/* LINKS */
-
-a{
-
-text-decoration:none;
-
-color:inherit;
-
-}
-
-
-/* IMAGES */
-
-img{
-
-max-width:100%;
-
-display:block;
-
-}
-
-
-/* BUTTON DEFAULT */
-
-button{
-
-font-family:var(--font-main);
-
-cursor:pointer;
-
-border:none;
-
-}
-
-
-/* CONTAINER UTILITY */
-
-.container{
-
-width:1200px;
-
-max-width:90%;
-
-margin:auto;
-
-}
-
-
-/* SECTION SPACING */
-
-section{
-
-padding:80px 0;
-
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
 }

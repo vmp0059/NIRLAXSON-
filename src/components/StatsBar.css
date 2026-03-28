@@ -1,0 +1,77 @@
+/* ─────────────────────────────────────────────
+   STATS BAR — sits directly below the hero
+───────────────────────────────────────────── */
+
+.statsbar {
+  width: 100%;
+  background: var(--blue-900);          /* #000191 — brand primary */
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border-bottom: 3px solid var(--yellow-500);   /* #FFD200 */
+}
+
+.statsbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px 20px;
+  position: relative;
+  transition: background 0.25s;
+}
+
+/* divider between items */
+.statsbar-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.statsbar-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.statsbar-number {
+  font-family: var(--font-display);     /* Syne */
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--yellow-500);             /* #FFD200 */
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.statsbar-label {
+  font-family: var(--font-body);        /* Outfit */
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .statsbar {
+    flex-wrap: wrap;
+  }
+
+  .statsbar-item {
+    flex: 1 1 33%;
+    padding: 22px 12px;
+  }
+
+  .statsbar-item:nth-child(3)::after {
+    display: none;
+  }
+
+  .statsbar-number { font-size: 28px; }
+  .statsbar-label  { font-size: 11px; }
+}

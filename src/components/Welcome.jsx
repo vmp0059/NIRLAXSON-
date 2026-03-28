@@ -1,7 +1,7 @@
 // src/components/Welcome.jsx
 import React from "react";
 import "./Welcome.css"; // optional, for styling
-import SideImage from "../assets/SideImage.jpeg";
+import SideImage from "../assets/products/SideImage.jpeg";
 
 const Welcome = () => {
   return (
