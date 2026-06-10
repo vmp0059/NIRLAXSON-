@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import "./AboutSection.css";
-
+//
 function useInView() {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);

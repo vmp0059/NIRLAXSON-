@@ -34,7 +34,7 @@ export const timeline = [
   { year: "2020", title: "500+ Projects",      desc: "Crossed the milestone of 500 successfully delivered projects."                },
   { year: "2024", title: "Global Reach",       desc: "Serving clients across 12+ countries with a growing international portfolio." },
 ];
-
+//
 // ─── Why Us ───────────────────────────────────────────────────
 export const whyUs = [
   { label: "ISO Certified Manufacturing"           },
