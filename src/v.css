@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* GLOBAL RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Brand Blues */
+  --blue-950:  hsl(239, 100%, 22%);
+  --blue-900:  #000191;
+  --blue-800:  #0000CC;
+  --blue-700:  #1A1AFF;
+  --blue-600:  #4D4DFF;
+  --blue-500:  #8080FF;
+  --blue-400:  #B3B3FF;
+  --blue-200:  #DCDCFF;
+  --blue-100:  #EEEEFF;
+  --blue-50:   #F5F5FF;
+
+  /* Golden Yellow */
+  --yellow-900: #806800;
+  --yellow-800: #B89400;
+  --yellow-700: #D4AB00;
+  --yellow-600: #F0C300;
+  --yellow-500: #FFD200;
+  --yellow-400: #FFE066;
+  --yellow-300: #FFEB99;
+  --yellow-100: #FFF8D6;
+  --yellow-50:  #FFFCF0;
+
+  /* Neutrals */
+  --white:     #FFFFFF;
+  --gray-50:   #F5F6FF;
+  --gray-100:  #EAEAF5;
+  --gray-200:  #D0D0E8;
+  --gray-400:  #9494BB;
+  --gray-600:  #5C5C88;
+  --gray-800:  #2A2A55;
+  --gray-900:  #15153D;
+  --dark:      #000160;
+
+  /* ─── Typography ─────────────────────────────────────────
+     --font-brand   → Orbitron   — company name only
+     --font-display → Exo 2      — headings, section titles, nav links
+     --font-body    → Outfit     — body copy, labels, captions
+  ──────────────────────────────────────────────────────── */
+  --font-brand:   'Orbitron', sans-serif;
+  --font-display: 'Exo 2', sans-serif;
+  --font-body:    'Outfit', sans-serif;
+  --font-family:  var(--font-body);
+
+  /* Border Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+}
+
+/* ─── Font Role Utilities ──────────────────────────────────
+   Apply these classes (or use the variables directly)
+   wherever each role is needed.
+──────────────────────────────────────────────────────────── */
+
+/* Company name — navbar logo text, hero brand name, footer brand */
+.font-brand {
+  font-family: var(--font-brand);
+  letter-spacing: 0.08em;   /* Orbitron breathes better with tracking */
+  text-transform: uppercase;
+}
+
+/* Section headings, page titles, card titles, nav links */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Body copy, descriptions, labels, inputs, captions */
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ─── Base Defaults ──────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  background: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}

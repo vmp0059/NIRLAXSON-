@@ -1,19 +1,16 @@
 .cta-section {
   padding: 44px 5%;
-  background: #f8fafc; /* LIGHT *///
+  background: #f8fafc;
 }
 
 .cta-banner {
   max-width: 860px;
   margin: 0 auto;
   background: linear-gradient(135deg, #081f5c, #12306a);
-  border-radius: 16px;
   padding: 44px 40px;
   text-align: center;
-eqefjjljv bottom: -70px;
-  border-radius: 50%;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  pointer-events: none;
 }
 
 .cta-content {
@@ -46,6 +43,23 @@ eqefjjljv bottom: -70px;
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+/* Button Hover Effects */
+
+.cp-btn-y {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cp-btn-y:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(245, 197, 24, 0.35);
+  filter: brightness(1.05);
+}
+
+.cp-btn-y:active {
+  transform: translateY(-1px);
 }
 
 /* Mobile */

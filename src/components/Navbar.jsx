@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/blue_logo.jpeg";
+import logo from "../assets/logo/blue_logo.jpeg";
 import "./Navbar.css";
 
 function Navbar({ currentPage, setCurrentPage }) {
@@ -35,17 +35,28 @@ function Navbar({ currentPage, setCurrentPage }) {
 
   return (
     <nav className={`navbar ${showNavbar ? "show" : "hide"}`}>
-      <img
-        src={logo}
-        alt="Nirlaxson Logo"
-        className="nav-logo"
+
+      {/* ── Brand block: logo + name ── */}
+      <div
+        className="nav-brand"
         onClick={() => navigate("home")}
         style={{ cursor: "pointer" }}
-      />
+      >
+        <img
+          src={logo}
+          alt="Nirlaxson Logo"
+          className="nav-logo"
+        />
+        <div className="nav-brand-text">
+          <span className="nav-brand-name">NIRLAXSON</span>
+          <span className="nav-brand-sub">INDUSTRIES</span>
+        </div>
+      </div>
+
       <ul className="nav-links">
         {links.map(({ label, page }) => (
           <li key={page}>
-            <a
+            <a                                             
               href="#"
               className={currentPage === page ? "active" : ""}
               onClick={(e) => { e.preventDefault(); navigate(page); }}
@@ -55,6 +66,7 @@ function Navbar({ currentPage, setCurrentPage }) {
           </li>
         ))}
       </ul>
+
     </nav>
   );
 }

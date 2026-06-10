@@ -19,35 +19,54 @@
    ============================================================ */
 
 .top-bar {
-  background: var(--primary-blue);   /* was hardcoded #002f6c */
-  color: #ffffff;
+  background: var(--blue-950);        /* deep navy — sits above the navbar */
+  color: var(--blue-400);             /* muted blue-white text */
   font-size: 13px;
+  font-family: var(--font-body);      /* Outfit */
+  font-weight: 400;
   padding: 8px 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  letter-spacing: 0.2px;
 }
 
-/* CTA BUTTON */
+.top-bar > div:first-child {
+  color: var(--blue-300, #9494BB);    /* welcome message — slightly muted */
+}
+
+/* ============================================================
+   CTA BUTTON
+   ============================================================ */
+
 .cta-btn {
-  background: var(--accent-yellow);  /* was hardcoded #FFD100 */
-  color: var(--primary-blue);        /* was hardcoded #002f6c */
-  padding: 6px 14px;
-  border-radius: 4px;
+  background: var(--yellow-500);      /* #FFD200 — primary accent */
+  color: var(--dark);                 /* #0A0A1E — dark text on yellow */
+  padding: 6px 16px;
+  border-radius: var(--r-sm);         /* 6px */
   font-size: 12px;
   font-weight: 600;
+  font-family: var(--font-body);      /* Outfit */
+  letter-spacing: 0.3px;
   cursor: pointer;
   border: none;
-  font-family: var(--font-main);
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, transform 0.18s ease;
 }
 
 .cta-btn:hover {
-  background: #ffcc00;
+  background: var(--yellow-400);      /* #FFE066 — lighter yellow on hover */
   transform: translateY(-1px);
 }
 
-/* MOBILE */
+.cta-btn:active {
+  transform: translateY(0px);
+  background: var(--yellow-600);      /* #F0C300 — press feedback */
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
 @media (max-width: 640px) {
   .top-bar {
     flex-direction: column;
