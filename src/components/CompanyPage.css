@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap');
+//
+/* ── Scroll animations ───────────────────────── */
+.cp-fade {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.cp-fade.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.cp-btn-y {
+  display: inline-block;
+  padding: 10px 26px;
+  background: #f5c518;
+  color: #0d1b5e;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-radius: 7px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.cp-btn-y:hover { background: #ffd93d; transform: translateY(-2px); }
+
+.cp-btn-o {
+  display: inline-block;
+  padding: 10px 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-radius: 7px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cp-btn-o:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* ── Service cards ───────────────────────────── */
+.cp-s-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px 20px;
+  border: 1.5px solid #e8eaf2;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+.cp-s-card:hover { border-color: #0d1b5e; transform: translateY(-3px); }
+.cp-s-card:hover .cp-snum { color: #f5c518 !important; }
+
+/* ── Why-us chips ────────────────────────────── */
+.cp-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1.5px solid #e8eaf2;
+  border-radius: 8px;
+  padding: 12px 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cp-chip:hover { border-color: #0d1b5e; background: #f0f2f8; }
+
+/* ── Tag pills ───────────────────────────────── */
+.cp-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #f0f2f8;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #0d1b5e;
+  margin: 2px;
+}
+
+/* ── Section label ───────────────────────────── */
+.cp-sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.cp-sec-tag .cp-bar { width: 22px; height: 3px; background: #f5c518; border-radius: 2px; }
+.cp-sec-tag span    { font-size: 10px; font-weight: 800; letter-spacing: 3px; color: #f5c518; }
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 900px) {
+  .cp-hero-g, .cp-about-g, .cp-journey-g { grid-template-columns: 1fr !important; }
+  .cp-srv-g { grid-template-columns: 1fr 1fr !important; }
+  .cp-why-g { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 560px) {
+  .cp-srv-g { grid-template-columns: 1fr !important; }
+  .cp-why-g { grid-template-columns: 1fr !important; }
+}
