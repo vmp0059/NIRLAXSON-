@@ -1,22 +1,11 @@
 
-import ProductCard from "../components/ProductCard";
+import React from 'react';
 
-function Products() {
-  return (
-    <>
-      
-    
-
-      <h1>Our Products</h1>
-
-      <div className="products-container">
-        <ProductCard title="Paint Mixing Machine" />
-        <ProductCard title="Coating Plant System" />
-      </div>
-
-     
-    </>
-  );
+export default function Products() {
+    return (
+        <div>
+            <h1>Contact Us</h1>
+            <p>This is the Contact Us page.</p>
+        </div>
+    );
 }
-
-export default Products;

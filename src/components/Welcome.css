@@ -1,6 +1,6 @@
 .welcome {
   width: 100%;
-  padding: 80px 6%;
+  padding: 44px 6%;
   background: var(--gray-50);           /* #F5F6FF — light blue-tinted bg */
 }
 
@@ -8,17 +8,18 @@
 
 .welcome-title {
   text-align: center;
-  margin-bottom: 70px;
+   margin-bottom: 36px;
 }
 
 .welcome-title h1 {
   font-family: var(--font-display);     /* Syne */
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.35;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
   color: var(--blue-950);               /* #00013A */
   max-width: 1400px;
   margin: 0 auto;
+  gap: 48px;
 }
 
 /* MAIN SECTION */
@@ -36,14 +37,16 @@
 
 .welcome-image {
   flex: 1;
+  height: 380px;
   display: flex;
   justify-content: center;
+  box-shadow: 12px 12px 22px rgba(0, 1, 145, 0.18);
 }
 
 .welcome-image img {
   width: 100%;
   max-width: 620px;
-  height: 500px;
+  height: 380px;
   object-fit: cover;
   display: block;
 
@@ -68,9 +71,9 @@
 
 .welcome-content p {
   font-family: var(--font-body);        /* Outfit */
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 300;
-  line-height: 1.9;
+  line-height: 1.75;
   color: var(--gray-800);              /* #2A2A55 */
   max-width: 650px;
 }
@@ -83,13 +86,13 @@
 /* BUTTON */
 
 .welcome-content button {
-  margin-top: 35px;
+  margin-top: 24px;
   background: var(--yellow-500);        /* #FFD200 */
   color: var(--dark);                   /* #0A0A1E */
   border: none;
-  padding: 18px 55px;
+  padding: 13px 40px;
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
   font-weight: 600;
   border-radius: var(--r-md);

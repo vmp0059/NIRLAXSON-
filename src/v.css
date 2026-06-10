@@ -10,7 +10,7 @@
 
 :root {
   /* Brand Blues */
-  --blue-950:  #000170;
+  --blue-950:  hsl(239, 100%, 22%);
   --blue-900:  #000191;
   --blue-800:  #0000CC;
   --blue-700:  #1A1AFF;
