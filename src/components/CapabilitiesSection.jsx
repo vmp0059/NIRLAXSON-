@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { NAVY, services } from "./companyData";
 import "./CapabilitiesSection.css";
+//
+
 
 function useInView() {
   const ref = useRef(null);
