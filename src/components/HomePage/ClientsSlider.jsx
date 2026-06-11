@@ -9,8 +9,8 @@
 import "./ClientsSlider.css";
 
 
-import JSWpaintsLogo  from "../assets/clients/JSWpaints.png";
-import JSWsteelLogo       from "../assets/clients/JSWsteel.png";
+import JSWpaintsLogo  from "../../assets/clients/JSWpaints.png";
+import JSWsteelLogo       from "../../assets/clients/JSWsteel.png";
 // ── Add your logo imports here ──────────────
 // import PidiliteLogo     from "../assets/clients/pidilite.png";
 // import KansaiLogo       from "../assets/clients/kansai.png";

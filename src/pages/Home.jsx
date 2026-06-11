@@ -1,10 +1,10 @@
 
-import Hero from "../components/Hero";
+import Hero from "../components/HomePage/Hero";
 // import ProductCarousel from "../components/CarouselProduct"; // sliding products
-import ProductSlider from "../components/ProductSlider";
+import ProductSlider from "../components/HomePage/ProductSlider";
 import Welcome from "../components/Welcome";
-import StatsBar from "../components/StatsBar";
-import ClientsSlider from "../components/ClientsSlider";
+import StatsBar from "../components/HomePage/StatsBar";
+import ClientsSlider from "../components/HomePage/ClientsSlider";
 
 function Home() {
   return (
