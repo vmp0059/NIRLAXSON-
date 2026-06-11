@@ -1,0 +1,272 @@
+/* ══════════════════════════════════════════════
+   FormPanel — tab switcher wrapping ContactForm
+   and FeedbackForm in the right panel
+   ══════════════════════════════════════════════ */
+
+.form-panel {
+  padding-left: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Tab bar ── */
+
+.form-panel-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  background: var(--gray-100);
+  border-radius: var(--r-md);
+  padding: 4px;
+  margin-bottom: 36px;
+  /* enough room for the sliding pill */
+  isolation: isolate;
+}
+
+/* Sliding background pill */
+.form-panel-tab-indicator {
+  position: absolute;
+  inset: 4px 50% 4px 4px; /* occupies left half by default */
+  background: var(--blue-900);
+  border-radius: calc(var(--r-md) - 2px);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  /* width is half the grid = 50% minus the padding gap */
+  width: calc(50% - 4px);
+}
+
+/* Individual tab buttons */
+.form-panel-tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--gray-500);
+  cursor: pointer;
+  border-radius: calc(var(--r-md) - 2px);
+  transition: color 0.22s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.form-panel-tab--active {
+  color: var(--white);
+}
+
+.form-panel-tab:not(.form-panel-tab--active):hover {
+  color: var(--blue-900);
+}
+
+.form-panel-tab-icon {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Pane container ── */
+
+.form-panel-body {
+  position: relative;
+}
+
+/* Both panes sit in the same space; only the active one is visible */
+.form-panel-pane {
+  display: none;
+}
+
+.form-panel-pane--active {
+  display: block;
+  animation: paneFadeIn 0.22s ease forwards;
+}
+
+@keyframes paneFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Strip the old panel padding from children ──
+   ContactForm.jsx applies padding-left via .contact-form-panel;
+   inside FormPanel we control the outer padding,
+   so we zero it out here to avoid double indent.       */
+.form-panel .contact-form-panel {
+  padding-left: 0;
+}
+
+/* FeedbackForm inside the panel is no longer a full-width
+   dark section — reset the section wrapper to plain bg    */
+.form-panel .feedback-section {
+  background: transparent;
+  padding: 0;
+}
+
+.form-panel .feedback-section::before {
+  display: none;
+}
+
+/* Tighten the feedback header for in-panel use */
+.form-panel .feedback-header {
+  margin-bottom: 28px;
+}
+
+.form-panel .feedback-header-icon {
+  background: var(--blue-900);
+  color: var(--yellow-500);
+}
+
+.form-panel .feedback-eyebrow {
+  color: var(--blue-700);
+}
+
+.form-panel .feedback-title {
+  color: var(--blue-950);
+  font-size: clamp(20px, 2.5vw, 26px);
+}
+
+.form-panel .feedback-subtitle {
+  color: var(--gray-500);
+}
+
+/* Re-skin feedback fields to light theme when inside panel */
+.form-panel .feedback-form .form-field label {
+  color: var(--gray-600);
+}
+
+.form-panel .feedback-form .form-field input,
+.form-panel .feedback-form .form-field select,
+.form-panel .feedback-form .form-field textarea {
+  background: var(--white);
+  border-color: var(--gray-200);
+  color: var(--blue-950);
+}
+
+.form-panel .feedback-form .form-field input::placeholder,
+.form-panel .feedback-form .form-field textarea::placeholder {
+  color: var(--gray-400);
+}
+
+.form-panel .feedback-form .form-field input:focus,
+.form-panel .feedback-form .form-field select:focus,
+.form-panel .feedback-form .form-field textarea:focus {
+  border-color: var(--blue-700);
+  box-shadow: 0 0 0 3px rgba(0, 1, 145, 0.07);
+}
+
+.form-panel .feedback-form .form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239494BB' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  color: var(--blue-950);
+}
+
+.form-panel .feedback-form .form-field select option {
+  background: var(--white);
+  color: var(--blue-950);
+}
+
+/* Star buttons in light context */
+.form-panel .feedback-label {
+  color: var(--gray-600);
+}
+
+.form-panel .feedback-star {
+  color: var(--gray-300);
+}
+
+.form-panel .feedback-star--active {
+  color: #f59e0b;
+}
+
+.form-panel .feedback-rating-label {
+  color: #b45309;
+}
+
+/* Recommend pills in light context */
+.form-panel .feedback-recommend-option {
+  border-color: var(--gray-200);
+  background: var(--gray-50);
+}
+
+.form-panel .feedback-recommend-option span {
+  color: var(--gray-600);
+}
+
+.form-panel .feedback-recommend-option:hover {
+  border-color: var(--blue-400);
+  background: var(--blue-50);
+}
+
+.form-panel .feedback-recommend-option:hover span {
+  color: var(--blue-800);
+}
+
+.form-panel .feedback-recommend-option--active {
+  border-color: var(--blue-700);
+  background: var(--blue-50);
+}
+
+.form-panel .feedback-recommend-option--active span {
+  color: var(--blue-900);
+}
+
+/* Submit button — use site primary in light context */
+.form-panel .feedback-submit-btn {
+  background: var(--blue-900);
+  color: var(--white);
+  box-shadow: none;
+}
+
+.form-panel .feedback-submit-btn:hover {
+  background: var(--blue-800);
+  box-shadow: 0 8px 20px rgba(0, 1, 145, 0.18);
+  transform: translateY(-2px);
+}
+
+.form-panel .feedback-privacy-note {
+  color: var(--gray-400);
+}
+
+/* Success banner inside panel */
+.form-panel .feedback-success {
+  background: #edfaf3;
+  border: 1px solid #6ee0a2;
+  border-radius: var(--r-md);
+  padding: 24px;
+}
+
+.form-panel .feedback-success-text {
+  color: #166534;
+}
+
+.form-panel .feedback-success-text strong {
+  color: #14532d;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+  .form-panel {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-panel-tab {
+    font-size: 12px;
+    padding: 10px 10px;
+    gap: 6px;
+  }
+}

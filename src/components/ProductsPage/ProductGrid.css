@@ -1,0 +1,20 @@
+/* ── Grid section ── */
+
+.products-section {
+  padding: 64px 6% 80px;
+  background: var(--gray-50);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}

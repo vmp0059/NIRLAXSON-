@@ -1,0 +1,25 @@
+/* ============================================================
+   ContactUs.css — PAGE-LEVEL LAYOUT ONLY
+   Component styles live in their own CSS files.
+   ============================================================ */
+
+/* ── Main two-column body grid ── */
+
+.contact-body {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 72px 6%;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+  .contact-body {
+    grid-template-columns: 1fr;
+    padding: 48px 6%;
+    gap: 48px;
+  }
+}

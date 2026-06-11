@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import "./ProductSlider.css";
 
-import product1 from "../assets/products/BeadMill.png";
-import product2 from "../assets/products/ButterflyMixer.png";
-import product3 from "../assets/products/HighSpeedDissolver.png";
-import product4 from "../assets/products/PugMixer.png";
-import product5 from "../assets/products/RibbonBlender.png";
-import product6 from "../assets/products/TwinShaftMixer.png";
+import product1 from "../../assets/products/BeadMill.png";
+import product2 from "../../assets/products/ButterflyMixer.png";
+import product3 from "../../assets/products/HighSpeedDissolver.png";
+import product4 from "../../assets/products/PugMixer.png";
+import product5 from "../../assets/products/RibbonBlender.png";
+import product6 from "../../assets/products/TwinShaftMixer.png";
 
 const products = [
   { img: product1, title: "Bead Mill",            tag: "Grinding Equipment"  },
