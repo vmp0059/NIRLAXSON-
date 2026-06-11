@@ -1,0 +1,56 @@
+/* ── ContactHero ── */
+
+.contact-hero {
+  width: 100%;
+  background: var(--blue-950);
+  padding: 64px 6%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--yellow-500);
+}
+
+.contact-hero-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--yellow-500);
+  margin-bottom: 12px;
+}
+
+.contact-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -1px;
+  margin: 0 0 14px;
+}
+
+.contact-hero p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--blue-400);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  .contact-hero {
+    padding: 48px 6%;
+  }
+}

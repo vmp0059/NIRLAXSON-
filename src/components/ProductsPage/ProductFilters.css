@@ -1,0 +1,54 @@
+/* ── Filter bar ── */
+
+.products-filter-bar {
+  width: 100%;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;                       /* sits below the navbar */
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,1,145,0.05);
+}
+
+.products-filter-bar::-webkit-scrollbar { display: none; }
+
+.products-filter-btn {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--gray-600);
+  background: transparent;
+  border: none;
+  padding: 16px 4px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.products-filter-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 3px;
+  background: var(--yellow-500);
+  border-radius: 2px 2px 0 0;
+  transition: width 0.25s;
+}
+
+.products-filter-btn:hover { color: var(--blue-900); }
+
+.products-filter-btn.active {
+  color: var(--blue-900);
+}
+
+.products-filter-btn.active::after { width: 100%; }

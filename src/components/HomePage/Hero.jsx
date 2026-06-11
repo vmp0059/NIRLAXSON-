@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import heroImage from "../assets/products/heroImage.jpeg";
+import heroImage from "../../assets/products/heroImage.jpeg";
 import "./Hero.css";
 
-import ProductImage1 from "../assets/products/HighSpeedDissolver.png";
-import ProductImage2 from "../assets/products/RibbonBlender.png";
-import ProductImage3 from "../assets/products/ButterflyMixer.png";
-import ProductImage4 from "../assets/products/BeadMill.png";
+import ProductImage1 from "../../assets/products/HighSpeedDissolver.png";
+import ProductImage2 from "../../assets/products/RibbonBlender.png";
+import ProductImage3 from "../../assets/products/ButterflyMixer.png";
+import ProductImage4 from "../../assets/products/BeadMill.png";
 
 const slides = [
   { type: "intro" },
