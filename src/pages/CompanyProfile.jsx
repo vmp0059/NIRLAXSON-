@@ -1,11 +1,11 @@
 
-import "../components/CompanyPage.css";
+import "../components/CompanyPage/CompanyPage.css";
 
-import HeroSection          from "../components/HeroSection";
-import AboutSection         from "../components/AboutSection";
-import CapabilitiesSection  from "../components/CapabilitiesSection";
-import JourneyAndWhySection from "../components/JourneyAndWhySection";
-import CTABanner            from "../components/CTABanner";
+import HeroSection          from "../components/CompanyPage/HeroSection";
+import AboutSection         from "../components/CompanyPage/AboutSection";
+import CapabilitiesSection  from "../components/CompanyPage/CapabilitiesSection";
+import JourneyAndWhySection from "../components/CompanyPage/JourneyAndWhySection";
+import CTABanner            from "../components/CompanyPage/CTABanner";
 //
 
 
