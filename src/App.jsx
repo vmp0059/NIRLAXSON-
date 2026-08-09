@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useNavigate, Routes, Route } from "react-router-dom";
 
 import SplashScreen   from "./components/SplashScreen";
 import Navbar         from "./components/Navbar";
@@ -6,23 +6,13 @@ import Footer         from "./components/Footer";
 import Home           from "./pages/Home";
 import CompanyProfile from "./pages/CompanyProfile";
 import Products       from "./pages/Products";
+import ProductDetail  from "./pages/ProductDetail";
 import ContactUs      from "./pages/ContactUs";
 
 import "./App.css";
 
 function App() {
-
-  const [currentPage, setCurrentPage] = useState("home");
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":     return <Home           setCurrentPage={setCurrentPage} />;
-      case "profile":  return <CompanyProfile setCurrentPage={setCurrentPage} />;
-      case "products": return <Products       setCurrentPage={setCurrentPage} />;
-      case "contact":  return <ContactUs      setCurrentPage={setCurrentPage} />;
-      default:         return <Home           setCurrentPage={setCurrentPage} />;
-    }
-  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -31,23 +21,28 @@ function App() {
       <div className="top-bar">
         <div>Welcome to Nirlaxson Industries</div>
         <div>
-          {/* Use a <button> instead of <a href="#"> for semantic correctness */}
           <button
             className="cta-btn"
-            onClick={() => setCurrentPage("contact")}
+            onClick={() => navigate("/contact")}
           >
             Talk With Expert
           </button>
         </div>
       </div>
 
-      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Navbar />
 
       <div className="page-wrapper">
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<CompanyProfile />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:slug" element={<ProductDetail />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Routes>
       </div>
 
-      <Footer setCurrentPage={setCurrentPage} />
+      <Footer />
     </>
   );
 }

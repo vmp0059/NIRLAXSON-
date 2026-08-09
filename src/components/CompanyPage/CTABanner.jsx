@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CTABanner.css";
-//
+
 function useInView() {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -23,6 +24,7 @@ function useInView() {
 
 export default function CTABanner() {
   const [ref, inView] = useInView();
+  const navigate = useNavigate();
 
   return (
     <section id="contact" className="cta-section">
@@ -45,11 +47,17 @@ export default function CTABanner() {
           </p>
 
           <div className="cta-buttons">
-            <a href="mailto:info@nirlaxson.com" className="cp-btn-y">
+            {/* Was mailto:info@nirlaxson.com — wrong domain, matched to no
+                real inbox. "Contact Us" is used identically elsewhere in
+                the app (Navbar, Footer) to mean the /contact page, so this
+                now behaves the same way instead of opening a mail client. */}
+            <button className="cp-btn-y" onClick={() => navigate("/contact")}>
               Contact Us
-            </a>
+            </button>
 
-            <a href="tel:+910000000000" className="cp-btn-y">
+            {/* Was tel:+910000000000 — placeholder fake number, corrected
+                to the real number used everywhere else in the app. */}
+            <a href="tel:+919860480063" className="cp-btn-y">
               Call Now
             </a>
           </div>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/blue_logo.jpeg";
 import "./Navbar.css";
 
-function Navbar({ currentPage, setCurrentPage }) {
+function Navbar() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,16 +23,11 @@ function Navbar({ currentPage, setCurrentPage }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const navigate = (page) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const links = [
-    { label: "Home Page",       page: "home"     },
-    { label: "Company Profile", page: "profile"  },
-    { label: "Our Products",    page: "products" },
-    { label: "Contact Us",      page: "contact"  },
+    { label: "Home Page",       path: "/"         },
+    { label: "Company Profile", path: "/about"    },
+    { label: "Our Products",    path: "/products" },
+    { label: "Contact Us",      path: "/contact"  },
   ];
 
   return (
@@ -39,7 +36,10 @@ function Navbar({ currentPage, setCurrentPage }) {
       {/* ── Brand block: logo + name ── */}
       <div
         className="nav-brand"
-        onClick={() => navigate("home")}
+        onClick={() => {
+          navigate("/");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
         style={{ cursor: "pointer" }}
       >
         <img
@@ -54,15 +54,16 @@ function Navbar({ currentPage, setCurrentPage }) {
       </div>
 
       <ul className="nav-links">
-        {links.map(({ label, page }) => (
-          <li key={page}>
-            <a                                             
-              href="#"
-              className={currentPage === page ? "active" : ""}
-              onClick={(e) => { e.preventDefault(); navigate(page); }}
+        {links.map(({ label, path }) => (
+          <li key={path}>
+            <NavLink
+              to={path}
+              end={path === "/"}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               {label}
-            </a>
+            </NavLink>
           </li>
         ))}
       </ul>

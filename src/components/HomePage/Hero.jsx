@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "../../assets/products/heroImage.jpeg";
 import "./Hero.css";
 
@@ -6,6 +7,9 @@ import ProductImage1 from "../../assets/products/HighSpeedDissolver.png";
 import ProductImage2 from "../../assets/products/RibbonBlender.png";
 import ProductImage3 from "../../assets/products/ButterflyMixer.png";
 import ProductImage4 from "../../assets/products/BeadMill.png";
+
+import { products } from "../../assets/products/data";
+import { getProductSlug } from "../../utils/product";
 
 const slides = [
   { type: "intro" },
@@ -17,6 +21,7 @@ const slides = [
     description:
       "Engineered for high-viscosity applications in paint and coating industries. Delivers consistent dispersion with minimal energy consumption.",
     image: ProductImage1,
+    productName: "High Speed Dissolver",
     specs: [
       { label: "Speed",    value: "0–1500 RPM" },
       { label: "Power",    value: "1–75 kW"    },
@@ -31,6 +36,7 @@ const slides = [
     description:
       "Ideal for uniform dry powder and granule mixing. Robust construction ensures long service life in demanding chemical plant environments.",
     image: ProductImage2,
+    productName: "Ribbon Blender",
     specs: [
       { label: "Capacity", value: "50–5000L"  },
       { label: "Power",    value: "2–55 kW"   },
@@ -45,6 +51,7 @@ const slides = [
     description:
       "Built for heavy-duty mixing of adhesives, rubber, and specialty coatings. Precision-engineered for performance.",
     image: ProductImage3,
+    productName: "Butterfly Mixer",
     specs: [
       { label: "Capacity", value: "Up to 1000L" },
       { label: "Power",    value: "5–30 kW"     },
@@ -59,6 +66,7 @@ const slides = [
     description:
       "Precision grinding for fine particle size reduction in paints, inks, and coatings. Consistent output every batch.",
     image: ProductImage4,
+    productName: "Bead Mill",
     specs: [
       { label: "Fineness", value: "< 1 µm"     },
       { label: "Power",    value: "2–90 kW"    },
@@ -71,6 +79,7 @@ function Hero() {
   const [current, setCurrent] = useState(0);
   const [animKey, setAnimKey] = useState(0);
   const timerRef = useRef(null);
+  const navigate = useNavigate();
 
   const startTimer = () => {
     clearInterval(timerRef.current);
@@ -93,6 +102,16 @@ function Hero() {
   };
 
   const slide = slides[current];
+
+  // Resolves each slide's real product record from data.js by name, so the
+  // "View Product" button always points at a genuine product/slug rather
+  // than a hardcoded or invented URL.
+  const viewSlideProduct = () => {
+    const product = products.find((p) => p.name === slide.productName);
+    if (!product) return;
+    navigate(`/products/${getProductSlug(product)}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="hero-wrapper">
@@ -161,7 +180,9 @@ function Hero() {
             </div>
 
             <div className="hero-cta-row anim-btn">
-              <button className="hero-product-btn">View Product</button>
+              <button className="hero-product-btn" onClick={viewSlideProduct}>
+                View Product
+              </button>
               <span className="hero-slide-label">
                 <strong>{slide.number}</strong> / 04
               </span>

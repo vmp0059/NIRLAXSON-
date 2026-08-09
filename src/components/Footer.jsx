@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import "./Footer.css";
 
 import {
@@ -10,7 +11,30 @@ import {
   FaYoutube
 } from "react-icons/fa";
 
-function Footer({ setCurrentPage }) {
+import { products } from "../assets/products/data";
+import { getProductSlug } from "../utils/product";
+
+// 5 real products from data.js shown in the footer's "Our Products" column.
+// Chosen to match the previous placeholder labels as closely as possible by
+// actual product identity — "Bead Mill Machine", "Lab Stirrer", and
+// "Ball Mill Machine" map directly. "Industrial Disperser" and "Mixer
+// Machine" had NO matching product anywhere in data.js, so they're replaced
+// with two other real, working products rather than left as fake links.
+const FOOTER_PRODUCT_NAMES = [
+  "High Speed Disperser (Motorised Lifting)",
+  "Pug Mixer",
+  "Bead Mill",
+  "Lab Stirrer Mixer",
+  "Industrial Ball Mill Machine",
+];
+
+const footerProducts = FOOTER_PRODUCT_NAMES
+  .map((name) => products.find((p) => p.name === name))
+  .filter(Boolean);
+
+function Footer() {
+  const navigate = useNavigate();
+
   return (
     <footer className="footer">
 
@@ -36,12 +60,15 @@ function Footer({ setCurrentPage }) {
             nirlaxson@gmail.com
           </p>
 
-          {/* SOCIAL ICONS */}
+          {/* SOCIAL ICONS — no real profiles exist yet (legacy site's own
+              footer uses javascript:void(0) for these too, confirmed in
+              includes/copyright.php). Kept as visual placeholders but
+              prevented from scrolling the page to top on click. */}
           <div className="socials">
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaLinkedinIn /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaYoutube /></a>
+            <a href="#" onClick={(e) => e.preventDefault()}><FaFacebookF /></a>
+            <a href="#" onClick={(e) => e.preventDefault()}><FaLinkedinIn /></a>
+            <a href="#" onClick={(e) => e.preventDefault()}><FaInstagram /></a>
+            <a href="#" onClick={(e) => e.preventDefault()}><FaYoutube /></a>
           </div>
         </div>
 
@@ -50,43 +77,26 @@ function Footer({ setCurrentPage }) {
           <h3>Quick Links</h3>
           <ul>
             <li>
-              <a href="#" onClick={(e) => {
-                e.preventDefault();
-                setCurrentPage("home");
-              }}>
-                Home Page
-              </a>
+              <Link to="/">Home Page</Link>
             </li>
 
             <li>
-              <a href="#" onClick={(e) => {
-                e.preventDefault();
-                setCurrentPage("profile");
-              }}>
-                Company Profile
-              </a>
+              <Link to="/about">Company Profile</Link>
             </li>
 
             <li>
-              <a href="#" onClick={(e) => {
-                e.preventDefault();
-                setCurrentPage("products");
-              }}>
-                Our Products
-              </a>
+              <Link to="/products">Our Products</Link>
             </li>
 
             <li>
-              <a href="#" onClick={(e) => {
-                e.preventDefault();
-                setCurrentPage("contact");
-              }}>
-                Contact Us
-              </a>
+              <Link to="/contact">Contact Us</Link>
             </li>
 
             <li>
-              <a href="#">
+              {/* No sitemap page exists in this project or the legacy site.
+                  Not creating a fake route — kept visually identical,
+                  non-navigating. */}
+              <a href="#" onClick={(e) => e.preventDefault()}>
                 Site Map
               </a>
             </li>
@@ -97,11 +107,13 @@ function Footer({ setCurrentPage }) {
         <div className="footer-col">
           <h3>Our Products</h3>
           <ul>
-            <li><a href="#">Industrial Disperser</a></li>
-            <li><a href="#">Mixer Machine</a></li>
-            <li><a href="#">Bead Mill Machine</a></li>
-            <li><a href="#">Lab Stirrer</a></li>
-            <li><a href="#">Ball Mill Machine</a></li>
+            {footerProducts.map((product) => (
+              <li key={product.id}>
+                <Link to={`/products/${getProductSlug(product)}`}>
+                  {product.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -117,11 +129,19 @@ function Footer({ setCurrentPage }) {
 
       </div>
 
-      {/* INQUIRY BAR */}
+      {/* INQUIRY BAR — previously had no onClick at all */}
       <div className="inquiry-bar">
-        <button>Send Inquiry</button>
-        <button>Send SMS</button>
-        <button>Call Me Free</button>
+        <button onClick={() => navigate("/contact")}>
+          Send Inquiry
+        </button>
+
+        <button onClick={() => { window.location.href = "sms:+919860480063"; }}>
+          Send SMS
+        </button>
+
+        <button onClick={() => { window.location.href = "tel:+919860480063"; }}>
+          Call Me Free
+        </button>
       </div>
 
       {/* COPYRIGHT */}

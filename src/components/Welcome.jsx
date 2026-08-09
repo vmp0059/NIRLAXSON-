@@ -1,9 +1,12 @@
 // src/components/Welcome.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Welcome.css"; // optional, for styling
 import SideImage from "../assets/products/SideImage.jpeg";
 
 const Welcome = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="welcome">
 
@@ -30,7 +33,9 @@ const Welcome = () => {
             services for our clients worldwide.
           </p>
 
-          <button>Read More</button>
+          {/* Legacy index.php's welcome section "Read More" links to
+              about.php — matched here to /about. */}
+          <button onClick={() => navigate("/about")}>Read More</button>
         </div>
 
       </div>

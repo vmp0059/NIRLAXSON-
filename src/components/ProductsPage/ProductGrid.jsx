@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 
 export default function ProductGrid({
   products,
-  openModal,
+  onView,
   goContact,
 }) {
   return (
@@ -13,7 +13,7 @@ export default function ProductGrid({
           <ProductCard
             key={product.id}
             product={product}
-            openModal={openModal}
+            onView={onView}
             goContact={goContact}
           />
         ))}

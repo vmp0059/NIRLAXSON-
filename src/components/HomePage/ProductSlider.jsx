@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProductSlider.css";
 
 import product1 from "../../assets/products/BeadMill.png";
@@ -7,6 +8,9 @@ import product3 from "../../assets/products/HighSpeedDissolver.png";
 import product4 from "../../assets/products/PugMixer.png";
 import product5 from "../../assets/products/RibbonBlender.png";
 import product6 from "../../assets/products/TwinShaftMixer.png";
+
+import { products as allProducts } from "../../assets/products/data";
+import { getProductSlug } from "../../utils/product";
 
 const products = [
   { img: product1, title: "Bead Mill",            tag: "Grinding Equipment"  },
@@ -32,6 +36,7 @@ function getCardClass(index, center, total) {
 function ProductSlider() {
   const [center, setCenter] = useState(0);
   const autoRef = useRef(null);
+  const navigate = useNavigate();
 
   const total = products.length;
 
@@ -52,6 +57,16 @@ function ProductSlider() {
     return () => clearInterval(autoRef.current);
   }, []);
 
+  // Resolves this slider's displayed product (by title) to its real
+  // data.js record, so the featured card can navigate to a genuine
+  // /products/:slug page instead of doing nothing.
+  const viewProduct = (title) => {
+    const product = allProducts.find((p) => p.name === title);
+    if (!product) return;
+    navigate(`/products/${getProductSlug(product)}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <section className="product-slider">
 
@@ -71,7 +86,14 @@ function ProductSlider() {
             <div
               key={i}
               className={`ps-card ${cardClass}`}
-              onClick={() => { if (cardClass !== "center") { setCenter(i); resetAuto(); } }}
+              onClick={() => {
+                if (cardClass !== "center") {
+                  setCenter(i);
+                  resetAuto();
+                } else {
+                  viewProduct(product.title);
+                }
+              }}
             >
               {/* Featured badge — only shown on center */}
               <span className="ps-featured-badge">Featured</span>

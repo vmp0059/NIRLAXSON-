@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import ProductsHero from "../components/ProductsPage/ProductsHero";
 import ProductFilters from "../components/ProductsPage/ProductFilters";
 import ProductGrid from "../components/ProductsPage/ProductGrid";
-import ProductModal from "../components/ProductsPage/ProductModal";
 import ProductsCTA from "../components/ProductsPage/ProductsCTA";
 
 import {
@@ -11,15 +11,13 @@ import {
   categories,
   ALL,
 } from "../assets/products/data";
+import { getProductSlug } from "../utils/product";
 
-export default function Products({
-  setCurrentPage,
-}) {
+export default function Products() {
+  const navigate = useNavigate();
+
   const [activeFilter, setActiveFilter] =
     useState(ALL);
-
-  const [selectedProduct, setSelectedProduct] =
-    useState(null);
 
   const filtered =
     activeFilter === ALL
@@ -28,16 +26,8 @@ export default function Products({
           (p) => p.tag === activeFilter
         );
 
-  const openModal = (product) =>
-    setSelectedProduct(product);
-
-  const closeModal = () =>
-    setSelectedProduct(null);
-
   const goContact = () => {
-    closeModal();
-
-    setCurrentPage("contact");
+    navigate("/contact");
 
     window.scrollTo({
       top: 0,
@@ -45,8 +35,15 @@ export default function Products({
     });
   };
 
-  console.log(selectedProduct);
-  
+  const viewProduct = (product) => {
+    navigate(`/products/${getProductSlug(product)}`);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <ProductsHero />
@@ -57,20 +54,13 @@ export default function Products({
         setActiveFilter={setActiveFilter}
       />
 
-
       <ProductGrid
         products={filtered}
-        openModal={openModal}
+        onView={viewProduct}
         goContact={goContact}
       />
 
       <ProductsCTA
-        goContact={goContact}
-      />
-
-      <ProductModal
-        product={selectedProduct}
-        closeModal={closeModal}
         goContact={goContact}
       />
     </>

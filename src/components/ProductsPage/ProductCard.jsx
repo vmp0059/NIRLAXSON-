@@ -1,24 +1,38 @@
+import { useEffect, useState } from "react";
 import "./ProductCard.css";
+
+function CardImage({ src, alt }) {
+  const [broken, setBroken] = useState(false);
+
+  useEffect(() => setBroken(false), [src]);
+
+  if (!src || broken) {
+    return (
+      <div className="product-card-image-fallback">
+        <span>{alt}</span>
+      </div>
+    );
+  }
+
+  return <img src={src} alt={alt} onError={() => setBroken(true)} />;
+}
 
 export default function ProductCard({
   product,
-  openModal,
+  onView,
   goContact,
 }) {
   return (
     <div
       className="product-card"
-      onClick={() => openModal(product)}
+      onClick={() => onView(product)}
     >
       <div className="product-card-image">
         <span className="product-card-tag-badge">
           {product.tag}
         </span>
 
-        <img
-          src={product.img}
-          alt={product.name}
-        />
+        <CardImage src={product.img} alt={product.name} />
       </div>
 
       <div className="product-card-body">
@@ -53,7 +67,7 @@ export default function ProductCard({
           className="product-card-cta"
           onClick={(e) => {
             e.stopPropagation();
-            openModal(product);
+            onView(product);
           }}
         >
           View Details
