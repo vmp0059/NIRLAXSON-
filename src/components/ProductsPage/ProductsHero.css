@@ -122,3 +122,17 @@
 
   line-height: 1.7;
 }
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .products-hero { padding: 48px 5%; }
+  .products-hero-content { padding: 32px 28px; }
+  .products-hero p { font-size: 14.5px; }
+}
+
+@media (max-width: 480px) {
+  .products-hero { padding: 40px 5%; }
+  .products-hero-content { padding: 26px 18px; border-radius: 16px; }
+  .products-hero-eyebrow { font-size: 10px; letter-spacing: 2.5px; }
+  .products-hero p { font-size: 14px; line-height: 1.6; }
+}

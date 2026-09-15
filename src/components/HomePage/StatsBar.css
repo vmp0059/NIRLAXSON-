@@ -5,33 +5,26 @@
 .statsbar {
   width: 100%;
   background: var(--blue-900);          /* #000191 — brand primary */
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   align-items: stretch;
   border-bottom: 3px solid var(--yellow-500);   /* #FFD200 */
 }
 
 .statsbar-item {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 28px 20px;
+  padding: 28px 16px;
   position: relative;
   transition: background 0.25s;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* divider between items */
-.statsbar-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 20%;
-  height: 60%;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.15);
+.statsbar-item:last-child {
+  border-right: none;
 }
 
 .statsbar-item:hover {
@@ -57,21 +50,58 @@
   text-align: center;
 }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
+/* ── Tablet: 3 columns, wraps to two rows ── */
+@media (max-width: 1024px) and (min-width: 641px) {
   .statsbar {
-    flex-wrap: wrap;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .statsbar-item {
-    flex: 1 1 33%;
-    padding: 22px 12px;
+    padding: 24px 14px;
   }
 
-  .statsbar-item:nth-child(3)::after {
-    display: none;
+  /* remove the border on the right edge of each row */
+  .statsbar-item:nth-child(3n) {
+    border-right: none;
   }
 
-  .statsbar-number { font-size: 28px; }
-  .statsbar-label  { font-size: 11px; }
+  /* items 4 & 5 form a shorter second row */
+  .statsbar-item:nth-child(4),
+  .statsbar-item:nth-child(5) {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .statsbar-number { font-size: 30px; }
+}
+
+/* ── Mobile: clean 2-column grid ── */
+@media (max-width: 640px) {
+  .statsbar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statsbar-item {
+    padding: 20px 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* right column: no right border */
+  .statsbar-item:nth-child(2n) {
+    border-right: none;
+  }
+
+  /* last row: no bottom border. With 5 items, item 5 is alone on row 3 */
+  .statsbar-item:nth-child(4),
+  .statsbar-item:nth-child(5) {
+    border-bottom: none;
+  }
+
+  /* odd item count: last item spans full width, centered */
+  .statsbar-item:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
+  .statsbar-number { font-size: 26px; }
+  .statsbar-label  { font-size: 10.5px; }
 }

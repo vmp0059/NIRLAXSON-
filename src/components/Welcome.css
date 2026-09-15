@@ -110,22 +110,61 @@
   transform: translateY(0);
 }
 
-/* MOBILE */
+/* TABLET / MOBILE */
 
 @media (max-width: 900px) {
+  .welcome {
+    padding: 36px 6%;
+  }
+
   .welcome-container {
     flex-direction: column;
+    gap: 28px;
   }
 
   .welcome-title h1 {
-    font-size: 26px;
+    font-size: clamp(20px, 5vw, 26px);
+  }
+
+  .welcome-image {
+    height: auto;
+    width: 100%;
+    box-shadow: none;
   }
 
   .welcome-image img {
+    width: 100%;
+    max-width: 100%;
     height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .welcome-content {
+    width: 100%;
   }
 
   .welcome-content p {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .welcome-content button {
     font-size: 16px;
+    padding: 12px 30px;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome { padding: 28px 5%; }
+  .welcome-title h1 { font-size: 19px; }
+  .welcome-content p { font-size: 14px; line-height: 1.65; }
+  .welcome-content button {
+    width: 100%;
+    max-width: none;
+    font-size: 15px;
+    padding: 12px 20px;
   }
 }

@@ -8,6 +8,7 @@ import CompanyProfile from "./pages/CompanyProfile";
 import Products       from "./pages/Products";
 import ProductDetail  from "./pages/ProductDetail";
 import ContactUs      from "./pages/ContactUs";
+import BrochureButton from "./components/BrochureButton/BrochureButton";
 
 import "./App.css";
 
@@ -40,9 +41,11 @@ function App() {
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/contact" element={<ContactUs />} />
         </Routes>
+        
       </div>
 
       <Footer />
+      <BrochureButton />
     </>
   );
 }

@@ -11,10 +11,15 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
   font-family: var(--font-body);
   font-size: 13px;
   color: var(--gray-600);
+}
+
+.product-detail-breadcrumb-inner .crumb-current {
+  overflow-wrap: anywhere;
 }
 
 .product-detail-breadcrumb-inner a {
@@ -56,7 +61,7 @@
 
 .product-detail-media-column {
   position: sticky;
-  top: 100px;
+  top: calc(var(--topbar-h, 38px) + var(--navbar-h, 72px) + 16px);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -378,44 +383,332 @@
   text-decoration: none;
 }
 
-/* ── Responsive ── */
+@media (max-width: 480px) {
+  .product-not-found { padding: 56px 6%; }
+  .product-not-found-code { font-size: 52px; }
+  .product-not-found-inner h1 { font-size: 22px; }
+}
 
-@media (max-width: 900px) {
+/* ============================================================
+   PRODUCT DETAIL — TABLET
+   ============================================================ */
+
+@media (max-width: 1024px) {
+
+  .product-detail-main {
+    padding: 44px 5% 60px;
+  }
+
   .product-detail-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
   }
 
   .product-detail-media-column {
     position: static;
+    width: 100%;
   }
 
   .product-detail-media {
-    padding: 32px;
+    min-height: 360px;
+    padding: 40px 30px;
   }
 
   .product-detail-media img {
-    max-height: 280px;
+    max-width: 90%;
+    max-height: 330px;
+  }
+
+  .product-detail-info {
+    width: 100%;
+  }
+
+  .product-detail-name {
+    font-size: clamp(30px, 5vw, 40px);
   }
 }
 
+
+/* ============================================================
+   PRODUCT DETAIL — MOBILE
+   ============================================================ */
+
 @media (max-width: 600px) {
-  .product-detail-specs-grid {
-    grid-template-columns: 1fr;
+
+  /* Breadcrumb */
+
+  .product-detail-breadcrumb {
+    padding: 13px 16px;
   }
 
-  .product-detail-actions {
+  .product-detail-breadcrumb-inner {
+    gap: 5px 8px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .product-detail-breadcrumb-inner .crumb-sep {
+    font-size: 8px;
+  }
+
+
+  /* Main section */
+
+  .product-detail-main {
+    padding: 28px 16px 48px;
+  }
+
+  .product-detail-grid {
+    display: flex;
     flex-direction: column;
+    gap: 28px;
+
+    width: 100%;
   }
 
-  .product-detail-actions a,
-  .product-detail-actions button {
-    justify-content: center;
-    text-align: center;
+
+  /* Product image */
+
+  .product-detail-media-column {
+    position: static;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .product-detail-media {
+    width: 100%;
+    min-height: 280px;
+
+    padding: 24px 18px;
+
+    border-radius: 18px;
+  }
+
+  .product-detail-media img {
+    display: block;
+
+    width: auto;
+    max-width: 100%;
+    max-height: 270px;
+
+    object-fit: contain;
+  }
+
+
+  /* Thumbnails */
+
+  .product-detail-thumbs {
+    width: 100%;
+
+    display: flex;
+    gap: 8px;
+
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    padding-bottom: 3px;
+
+    scrollbar-width: none;
+  }
+
+  .product-detail-thumbs::-webkit-scrollbar {
+    display: none;
   }
 
   .product-detail-thumb {
-    width: 56px;
-    height: 56px;
+    flex: 0 0 60px;
+
+    width: 60px;
+    height: 60px;
+  }
+
+
+  /* Product information */
+
+  .product-detail-info {
+    width: 100%;
+
+    gap: 16px;
+  }
+
+  .product-detail-tag {
+    font-size: 9px;
+    letter-spacing: 1.8px;
+
+    padding: 6px 12px;
+  }
+
+  .product-detail-name {
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -0.4px;
+  }
+
+  .product-detail-desc {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+
+  /* Specifications */
+
+  .product-detail-block {
+    margin-top: 2px;
+  }
+
+  .product-detail-block-title {
+    font-size: 11px;
+    letter-spacing: 1.8px;
+
+    margin-bottom: 10px;
+  }
+
+  .product-detail-specs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .product-detail-spec-item {
+    min-width: 0;
+
+    padding: 12px;
+  }
+
+  .product-detail-spec-label {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+
+    margin-bottom: 4px;
+  }
+
+  .product-detail-spec-value {
+    font-size: 13px;
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+  }
+
+
+  /* Features */
+
+  .product-detail-features-list {
+    gap: 9px;
+  }
+
+  .product-detail-features-list li {
+    font-size: 13px;
+    line-height: 1.55;
+
+    gap: 8px;
+  }
+
+  .product-detail-feature-icon {
+    font-size: 13px;
+    margin-top: 3px;
+  }
+
+
+  /* Applications */
+
+  .product-detail-applications {
+    gap: 6px;
+  }
+
+  .product-detail-application-chip {
+    font-size: 11px;
+
+    padding: 5px 10px;
+  }
+
+
+  /* Buttons */
+
+  .product-detail-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 6px;
+  }
+
+  .product-detail-actions > a,
+  .product-detail-actions > button {
+    width: 100%;
+    min-height: 52px;
+
+    justify-content: center;
+  }
+
+
+  /* Related products */
+
+  .product-detail-related {
+    padding: 44px 16px 56px;
+  }
+
+  .product-detail-related-heading {
+    margin-bottom: 28px;
+  }
+
+  .product-detail-related-heading h2 {
+    font-size: 25px;
+  }
+
+  .product-detail-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+  .product-detail-main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .product-detail-media {
+    min-height: 250px;
+    padding: 20px 14px;
+  }
+
+  .product-detail-media img {
+    max-height: 235px;
+  }
+
+  .product-detail-name {
+    font-size: 27px;
+  }
+
+  .product-detail-desc {
+    font-size: 13px;
+  }
+
+  .product-detail-spec-item {
+    padding: 10px;
+  }
+
+  .product-detail-spec-label {
+    font-size: 8px;
+  }
+
+  .product-detail-spec-value {
+    font-size: 12px;
+  }
+
+  .product-detail-related-grid {
+    gap: 9px;
   }
 }

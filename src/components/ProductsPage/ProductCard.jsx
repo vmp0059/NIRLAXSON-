@@ -26,6 +26,15 @@ export default function ProductCard({
     <div
       className="product-card"
       onClick={() => onView(product)}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${product.name}`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onView(product);
+        }
+      }}
     >
       <div className="product-card-image">
         <span className="product-card-tag-badge">

@@ -150,3 +150,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .quote-section {
+    padding: 18px 16px;
+    gap: 16px;
+  }
+}

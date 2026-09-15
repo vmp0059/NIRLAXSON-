@@ -7,14 +7,42 @@
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 28px;
   max-width: 1360px;
   margin: 0 auto;
 }
 
-@media (max-width: 600px) {
+/* Tablet: force a clean 2-column layout */
+@media (max-width: 1024px) and (min-width: 601px) {
   .products-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .products-section {
+    padding: 44px 5% 56px;
+  }
+}
+
+/* ── Mobile: 2 products per row ── */
+
+@media (max-width: 600px) {
+
+  .products-section {
+    padding: 36px 12px 48px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .products-section {
+    padding: 32px 4% 44px;
   }
 }

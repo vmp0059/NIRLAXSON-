@@ -352,3 +352,8 @@
     gap: 8px;
   }
 }
+
+@media (max-width: 480px) {
+  .feedback-section { padding: 48px 5%; }
+  .feedback-success { padding: 22px; }
+}

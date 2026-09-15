@@ -22,7 +22,7 @@ return (
 
 <div className="intro-content">
 
-<img src={logo} className="logo"/>
+<img src={logo} className="logo" alt="Nirlaxson Industries"/>
 
 <h1 className="company-name">
 NIRLAXON INDUSTRIES

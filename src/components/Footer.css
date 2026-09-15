@@ -169,9 +169,26 @@
 
 /* ── RESPONSIVE ── */
 
+@media (max-width: 1024px) and (min-width: 901px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .footer-col.map {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 900px) {
+  .footer {
+    padding-top: 44px;
+  }
+
   .footer-container {
     grid-template-columns: 1fr;
+    width: 88%;
+    gap: 36px;
   }
 
   .inquiry-bar {
@@ -179,4 +196,53 @@
     gap: 10px;
     width: 80%;
   }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    width: 90%;
+    gap: 32px;
+  }
+
+  .inquiry-bar {
+    width: 100%;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .inquiry-bar button {
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .map iframe {
+    height: 160px;
+  }
+
+  .socials a {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+.contact-info {
+  display: block !important;
+}
+
+.contact-info .icon {
+  float: left;
+  margin-right: 10px;
+}
+
+.contact-info a {
+  color: var(--blue-400);
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.25s ease;
+}
+
+.contact-info a:hover {
+  color: var(--yellow-500);
+  text-decoration: underline;
 }

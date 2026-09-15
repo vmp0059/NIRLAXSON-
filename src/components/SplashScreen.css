@@ -111,3 +111,8 @@
     visibility: hidden;
   }
 }
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .logo { width: 130px; }
+  .company-name { font-size: 20px; letter-spacing: 3px; padding: 0 16px; text-align: center; }
+}

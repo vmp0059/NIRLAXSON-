@@ -50,26 +50,77 @@ function Footer() {
             Boisar, Palghar - 401501, Maharashtra, India
           </p>
 
-          <p>
-            <FaPhoneAlt className="icon" />
-            +91 9860480063
-          </p>
+        <p className="contact-info">
+  <FaPhoneAlt className="icon" />
 
-          <p>
-            <FaEnvelope className="icon" />
-            nirlaxson@gmail.com
-          </p>
+  <a href="tel:+919860480063">
+    +91 9860-480-063
+  </a>
+  <br />
+
+  <a href="tel:+919850149106">
+    +91 9850149106
+  </a>
+  <br />
+
+  <a href="tel:+919860480063">
+    +91 9860480063
+  </a>
+</p>
+
+<p className="contact-info">
+  <FaEnvelope className="icon" />
+
+  <a
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@nirlaxsonindustries.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    info@nirlaxsonindustries.com
+  </a>
+  <br />
+
+  <a
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=nirlaxson@gmail.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    nirlaxson@gmail.com
+  </a>
+</p>
 
           {/* SOCIAL ICONS — no real profiles exist yet (legacy site's own
               footer uses javascript:void(0) for these too, confirmed in
               includes/copyright.php). Kept as visual placeholders but
               prevented from scrolling the page to top on click. */}
           <div className="socials">
-            <a href="#" onClick={(e) => e.preventDefault()}><FaFacebookF /></a>
-            <a href="#" onClick={(e) => e.preventDefault()}><FaLinkedinIn /></a>
-            <a href="#" onClick={(e) => e.preventDefault()}><FaInstagram /></a>
-            <a href="#" onClick={(e) => e.preventDefault()}><FaYoutube /></a>
-          </div>
+  <a
+    href="https://www.linkedin.com/company/nirlaxson-industries?originalSubdomain=in"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+  >
+    <FaLinkedinIn />
+  </a>
+
+  <a
+    href="https://www.instagram.com/nirlaxson/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+  >
+    <FaInstagram />
+  </a>
+
+  <a
+    href="https://www.youtube.com/@nirlaxsonindustries504"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="YouTube"
+  >
+    <FaYoutube />
+  </a>
+</div>
         </div>
 
         {/* QUICK LINKS */}
@@ -123,7 +174,7 @@ function Footer() {
 
           <iframe
             title="location"
-            src="https://maps.google.com/maps?q=boisar%20maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=NIRLAXSON INDUSTRIES%20maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
           ></iframe>
         </div>
 

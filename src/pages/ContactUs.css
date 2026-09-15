@@ -23,3 +23,10 @@
     gap: 48px;
   }
 }
+
+@media (max-width: 480px) {
+  .contact-body {
+    padding: 32px 5%;
+    gap: 36px;
+  }
+}

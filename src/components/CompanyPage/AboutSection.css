@@ -110,10 +110,22 @@
 }
 
   .about-title {
-    font-size: 40px;
+    font-size: clamp(24px, 6vw, 32px);
   }
 
   .about-text {
-    font-size: 16px;
+    font-size: 15px;
   }
+}
+
+@media (max-width: 480px) {
+  .about-section { padding: 44px 5%; }
+
+  .about-values {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 28px;
+  }
+
+  .value-card { padding-left: 16px; }
 }

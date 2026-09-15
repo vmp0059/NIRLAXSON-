@@ -1,77 +1,180 @@
-/* ── NAVBAR ── */
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-200);
-  box-shadow: 0 2px 6px rgba(0, 1, 145, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  position: fixed;
+  top: 40px; /* height of the blue top bar */
+  left: 0;
   z-index: 1000;
+
+  background: var(--white);
+  color: var(--blue-950);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.3s ease;
 }
 
 .navbar.show {
   transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(0, 1, 145, 0.08);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
 }
 
 .navbar.hide {
   transform: translateY(-100%);
 }
 
-/* ── LOGO ── */
 
-.nav-logo {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
+/* =========================================================
+   NAVBAR ROW
+========================================================= */
+
+.navbar-row {
+  width: 100%;
+  min-height: 100px;
+
+  padding: 8px 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
 }
 
-/* ── NAV LINKS ── */
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  flex-shrink: 0;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+
+/* Main logo mark */
+
+.nav-logo {
+  width: 76px;
+  height: 76px;
+
+  display: block;
+
+  object-fit: contain;
+  object-position: center;
+
+  flex-shrink: 0;
+}
+
+
+/* Brand text */
+
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  line-height: 0.95;
+}
+
+.nav-brand-name,
+.nav-brand-sub {
+  font-family: var(--font-display);
+
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  color: var(--blue-950);
+}
+
+.nav-brand-name {
+  font-size: 34px;
+}
+
+.nav-brand-sub {
+  font-size: 34px;
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 44px;
+
+  gap: 46px;
+
   list-style: none;
+
   margin: 0;
   padding: 0;
 }
 
 .nav-links li {
-  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-  color: var(--gray-900);
-  font-family: var(--font-body);        /* Outfit */
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
   position: relative;
+
+  display: inline-block;
+
+  padding: 8px 0;
+
+  font-family: var(--font-body);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: var(--dark);
+
   text-decoration: none;
-  transition: color 0.2s ease;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* underline animation */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--yellow-500);        /* #FFD200 */
-  transition: width 0.25s ease;
+.nav-links a:hover {
+  color: var(--blue-900);
 }
 
-.nav-links a:hover,
 .nav-links a.active {
-  color: var(--blue-900);               /* #000191 */
+  color: var(--blue-900);
+}
+
+
+/* Yellow active underline */
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 3px;
+
+  border-radius: 3px;
+
+  background: var(--yellow-500);
+
+  transition: width 0.25s ease;
 }
 
 .nav-links a:hover::after,
@@ -79,37 +182,363 @@
   width: 100%;
 }
 
-.nav-brand {
-  display: flex;
+
+/* =========================================================
+   MOBILE TOGGLE
+========================================================= */
+
+.nav-toggle {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 9px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+
+  cursor: pointer;
+
   align-items: center;
-  gap: 20px;
-  text-decoration: none;
-}
-.nav-brand-text {
-  
-  display: flex;
+  justify-content: center;
+
   flex-direction: column;
-  line-height: 1.15;
-  gap: 1px;
+  gap: 5px;
+
+  z-index: 1100;
 }
 
-.nav-brand-name,
-.nav-brand-sub {
-  
-  font-family: var(--font-brand);     /* Orbitron */
-  font-weight: 800;
+.nav-toggle:hover {
+  background: var(--gray-50);
+}
+
+.nav-toggle-bar {
+  display: block;
+
+  width: 25px;
+  height: 3px;
+
+  border-radius: 3px;
+
+  background: var(--blue-950);
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+/* Hamburger → X */
+
+.navbar.menu-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar.menu-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar.menu-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* =========================================================
+   MOBILE MENU PANEL
+========================================================= */
+
+.mobile-nav-panel {
+  display: none;
+
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+
+  width: 100%;
+
+  background: var(--white);
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(-10px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.mobile-nav-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  list-style: none;
+
+  margin: 0;
+  padding: 12px 24px 24px;
+}
+
+.mobile-nav-links li {
+  margin: 0;
+  border-bottom: 1px solid var(--blue-100);
+}
+
+.mobile-nav-links li:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-links a {
+  display: block;
+
+  padding: 16px 4px;
+
+  font-family: var(--font-body);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: var(--dark);
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.mobile-nav-links a:hover,
+.mobile-nav-links a.active {
   color: var(--blue-900);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  padding-left: 10px;
 }
 
-.nav-brand-name {
-  
-   font-size: 1.5rem;   /* ↑ was 1.15rem */
+
+/* Active mobile underline */
+
+.mobile-nav-links a.active {
+  border-left: 3px solid var(--yellow-500);
+  padding-left: 10px;
 }
 
-.nav-brand-sub {
-  
-  font-size: 1.5rem;   /* ↑ was 1.15rem */
-  letter-spacing: 0.22em;   /* extra tracking on second line for visual balance */
+
+/* =========================================================
+   MOBILE BACKDROP
+========================================================= */
+
+.mobile-nav-backdrop {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  cursor: pointer;
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   LARGE TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .navbar-row {
+    padding: 8px 30px;
+  }
+
+  .nav-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .nav-brand-name,
+  .nav-brand-sub {
+    font-size: 30px;
+  }
+
+  .nav-links {
+    gap: 30px;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .navbar-row {
+    min-height: 76px;
+
+    padding: 6px 20px;
+  }
+
+  .nav-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .nav-brand {
+    gap: 10px;
+  }
+
+  .nav-brand-name,
+  .nav-brand-sub {
+    font-size: 24px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Hide desktop links */
+
+  .nav-links {
+    display: none;
+  }
+
+  /* Show hamburger */
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Show mobile panel */
+
+  .mobile-nav-panel {
+    display: block;
+  }
+
+  .mobile-nav-backdrop {
+    display: block;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .navbar-row {
+    min-height: 68px;
+
+    padding: 5px 16px;
+  }
+
+  .nav-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .nav-brand {
+    gap: 8px;
+  }
+
+  .nav-brand-name,
+  .nav-brand-sub {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-toggle-bar {
+    width: 23px;
+    height: 2.5px;
+  }
+
+  .mobile-nav-links {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .navbar-row {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .nav-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-brand {
+    gap: 6px;
+  }
+
+  .nav-brand-name,
+  .nav-brand-sub {
+    font-size: 17px;
+    letter-spacing: 0.8px;
+  }
+
+  .nav-toggle {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.nav-links a:focus-visible,
+.mobile-nav-links a:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--yellow-500);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .navbar,
+  .nav-links a,
+  .nav-links a::after,
+  .mobile-nav-panel,
+  .mobile-nav-links a,
+  .nav-toggle-bar {
+    transition: none;
+  }
 }

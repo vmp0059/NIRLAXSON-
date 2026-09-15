@@ -86,7 +86,24 @@ function ProductSlider() {
             <div
               key={i}
               className={`ps-card ${cardClass}`}
+              role="button"
+              tabIndex={cardClass === "hidden" ? -1 : 0}
+              aria-label={
+                cardClass === "center"
+                  ? `View ${product.title}`
+                  : `Show ${product.title}`
+              }
               onClick={() => {
+                if (cardClass !== "center") {
+                  setCenter(i);
+                  resetAuto();
+                } else {
+                  viewProduct(product.title);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key !== "Enter" && e.key !== " ") return;
+                e.preventDefault();
                 if (cardClass !== "center") {
                   setCenter(i);
                   resetAuto();

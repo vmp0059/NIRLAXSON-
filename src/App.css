@@ -7,76 +7,209 @@
 .page-wrapper {
   flex: 1;                  /* pushes Footer to the bottom inside #root flexbox */
   width: 100%;
-}
-
-/* Legacy utility kept for any page that uses .main-content directly */
-.main-content {
-  padding: 48px 40px;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* ============================================================
-   TOP BAR
+   TOP BAR — the only element that stays sticky/visible at all times
    ============================================================ */
 
+:root {
+  --topbar-h: 38px;
+}
+
 .top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;             /* above the navbar so it is never overlapped */
+  min-height: var(--topbar-h);
   background: var(--blue-950);        /* deep navy — sits above the navbar */
   color: var(--blue-400);             /* muted blue-white text */
   font-size: 13px;
   font-family: var(--font-body);      /* Outfit */
   font-weight: 400;
-  padding: 8px 5%;
+  padding: 8px clamp(16px, 5%, 40px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   letter-spacing: 0.2px;
 }
 
 .top-bar > div:first-child {
   color: var(--blue-300, #9494BB);    /* welcome message — slightly muted */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.top-bar > div:last-child {
+  flex-shrink: 0;
 }
 
 /* ============================================================
-   CTA BUTTON
+   CTA BUTTON — BREATHING / ATTENTION EFFECT
    ============================================================ */
 
 .cta-btn {
-  background: var(--yellow-500);      /* #FFD200 — primary accent */
-  color: var(--dark);                 /* #0A0A1E — dark text on yellow */
+  background: var(--yellow-500);
+  color: var(--dark);
+
   padding: 6px 16px;
-  border-radius: var(--r-sm);         /* 6px */
+  border-radius: var(--r-sm);
+
   font-size: 12px;
   font-weight: 600;
-  font-family: var(--font-body);      /* Outfit */
+  font-family: var(--font-body);
   letter-spacing: 0.3px;
+
   cursor: pointer;
   border: none;
-  transition: background 0.2s ease, transform 0.18s ease;
+  min-height: 34px;
+  white-space: nowrap;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  /* Constant breathing */
+  animation: expertBreathing 2.2s ease-in-out infinite;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
+
+/* ------------------------------------------------------------
+   BREATHING GLOW
+   ------------------------------------------------------------ */
+
+@keyframes expertBreathing {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(255, 210, 0, 0.45);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 0 0 8px rgba(255, 210, 0, 0.08),
+      0 7px 22px rgba(255, 210, 0, 0.45);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   SHINE PASS
+   ------------------------------------------------------------ */
+
+.cta-btn::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: -130%;
+
+  width: 60%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.3);
+
+  transform: skewX(-20deg);
+
+  pointer-events: none;
+
+  animation: expertShine 3.5s ease-in-out infinite;
+}
+
+
+@keyframes expertShine {
+  0% {
+    left: -130%;
+  }
+
+  35%,
+  100% {
+    left: 140%;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   HOVER — EXTRA ATTENTION
+   ------------------------------------------------------------ */
 
 .cta-btn:hover {
-  background: var(--yellow-400);      /* #FFE066 — lighter yellow on hover */
-  transform: translateY(-1px);
+  background: var(--yellow-400);
+
+  animation: none;
+
+  transform:
+    translateY(-3px)
+    scale(1.08);
+
+  box-shadow:
+    0 8px 24px rgba(255, 210, 0, 0.55);
 }
+
+
+/* ------------------------------------------------------------
+   CLICK
+   ------------------------------------------------------------ */
 
 .cta-btn:active {
-  transform: translateY(0px);
-  background: var(--yellow-600);      /* #F0C300 — press feedback */
+  transform: scale(0.96);
+
+  background: var(--yellow-600);
+
+  box-shadow:
+    0 3px 10px rgba(255, 210, 0, 0.3);
 }
 
+
+/* ------------------------------------------------------------
+   ACCESSIBILITY
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn,
+  .cta-btn::before {
+    animation: none;
+  }
+}
 /* ============================================================
-   MOBILE
+   RESPONSIVE
    ============================================================ */
 
 @media (max-width: 640px) {
+  :root {
+    --topbar-h: 34px;
+  }
+
   .top-bar {
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-    padding: 10px 16px;
+    padding: 6px 14px;
+    font-size: 11.5px;
+    gap: 8px;
   }
 
   .cta-btn {
-    font-size: 11px;
-    padding: 5px 12px;
+    font-size: 10.5px;
+    padding: 6px 12px;
+    min-height: 32px;
+  }
+}
+
+@media (max-width: 380px) {
+  .top-bar > div:first-child {
+    max-width: 52vw;
   }
 }

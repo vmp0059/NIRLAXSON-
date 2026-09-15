@@ -1,0 +1,418 @@
+/* ============================================================
+   NIRLAXSON INDUSTRIES
+   BROCHURE SIDE TAB
+   ============================================================ */
+
+
+/* ============================================================
+   MAIN BROCHURE TAB
+   ============================================================ */
+
+.brochure-tab {
+  position: fixed;
+
+  right: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 9999;
+
+  width: 64px;
+  min-height: 210px;
+
+  background: var(--blue-900);
+
+  border: 1px solid rgba(255, 210, 0, 0.55);
+  border-right: none;
+
+  border-radius: 15px 0 0 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  padding: 20px 8px;
+
+  color: var(--white);
+
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 30px rgba(0, 1, 145, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   HIDDEN STATE DURING SCROLL
+   ============================================================ */
+
+.brochure-tab.brochure-hidden {
+  transform:
+    translate(100%, -50%);
+}
+
+
+/* ============================================================
+   YELLOW ACCENT LINE
+   ============================================================ */
+
+.brochure-tab::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+
+  width: 3px;
+
+  background: var(--yellow-500);
+
+  border-radius: 0 4px 4px 0;
+}
+
+
+/* ============================================================
+   SUBTLE TOP/BOTTOM DECORATION
+   ============================================================ */
+
+.brochure-tab::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 0;
+
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.14);
+}
+
+
+/* ============================================================
+   BROCHURE ICON
+   ============================================================ */
+
+.brochure-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: var(--yellow-500);
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.brochure-icon svg {
+  width: 28px;
+  height: 28px;
+
+  display: block;
+}
+
+
+/* ============================================================
+   BROCHURE TEXT
+   ============================================================ */
+
+.brochure-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  white-space: nowrap;
+
+  writing-mode: vertical-rl;
+
+  transform: rotate(180deg);
+}
+
+
+/* VIEW */
+
+.brochure-small {
+  font-family: var(--font-body);
+
+  font-size: 8px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 2px;
+
+  color: var(--white);
+
+  opacity: 0.7;
+}
+
+
+/* BROCHURE */
+
+.brochure-main {
+  font-family: var(--font-display);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 2px;
+
+  color: var(--white);
+}
+
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.brochure-tab:hover {
+  width: 74px;
+
+  background: var(--dark);
+
+  box-shadow:
+    0 12px 35px rgba(0, 1, 145, 0.34);
+}
+
+.brochure-tab:hover .brochure-icon {
+  transform: translateY(4px);
+
+  color: var(--yellow-400);
+}
+
+
+/* ============================================================
+   ACTIVE / CLICK
+   ============================================================ */
+
+.brochure-tab:active {
+  transform:
+    translateY(-50%)
+    scale(0.97);
+}
+
+
+/* ============================================================
+   KEYBOARD ACCESSIBILITY
+   ============================================================ */
+
+.brochure-tab:focus-visible {
+  outline: 3px solid var(--yellow-400);
+
+  outline-offset: 3px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .brochure-tab {
+    width: 58px;
+
+    min-height: 190px;
+
+    padding: 18px 7px;
+
+    gap: 13px;
+
+    border-radius: 13px 0 0 13px;
+  }
+
+
+  .brochure-tab::before {
+    top: 16px;
+    bottom: 16px;
+
+    width: 3px;
+  }
+
+
+  .brochure-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .brochure-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+
+  .brochure-small {
+    font-size: 7px;
+
+    letter-spacing: 1.7px;
+  }
+
+
+  .brochure-main {
+    font-size: 11px;
+
+    letter-spacing: 1.7px;
+  }
+
+
+  .brochure-tab:hover {
+    width: 64px;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .brochure-tab {
+    width: 50px;
+
+    min-height: 165px;
+
+    padding: 15px 6px;
+
+    gap: 10px;
+
+    border-radius: 11px 0 0 11px;
+  }
+
+
+  .brochure-tab::before {
+    top: 13px;
+    bottom: 13px;
+
+    width: 3px;
+  }
+
+
+  .brochure-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .brochure-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+
+  .brochure-small {
+    font-size: 6px;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  .brochure-main {
+    font-size: 9px;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  /*
+     Keep the mobile hover effect subtle.
+     We don't want the tab covering too much content.
+  */
+
+  .brochure-tab:hover {
+    width: 54px;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+  .brochure-tab {
+    width: 46px;
+
+    min-height: 150px;
+
+    padding: 14px 5px;
+
+    gap: 9px;
+  }
+
+
+  .brochure-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+
+  .brochure-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+
+  .brochure-small {
+    font-size: 5.5px;
+
+    letter-spacing: 1.1px;
+  }
+
+
+  .brochure-main {
+    font-size: 8px;
+
+    letter-spacing: 1.1px;
+  }
+
+
+  .brochure-tab:hover {
+    width: 49px;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   Accessibility for users who prefer less animation.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .brochure-tab,
+  .brochure-icon {
+    transition: none;
+  }
+}
