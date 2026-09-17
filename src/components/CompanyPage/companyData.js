@@ -9,9 +9,9 @@ export const GRAY   = "#6b7280";
 
 // ─── Stats ────────────────────────────────────────────────────
 export const stats = [
-  { value: "25+",  label: "Years"        },
-  { value: "500+", label: "Projects"     },
-  { value: "12+",  label: "Countries"    },
+  { value: "5+",  label: "Years"        },
+  { value: "45+", label: "Projects"     },
+  { value: "6+",  label: "Countries"    },
   { value: "98%",  label: "Satisfaction" },
 ];
 
@@ -27,12 +27,13 @@ export const services = [
 
 // ─── Timeline ─────────────────────────────────────────────────
 export const timeline = [
-  { year: "1999", title: "Founded",            desc: "Established in India with a vision to serve the process equipment sector."     },
-  { year: "2005", title: "First Export Order", desc: "Entered international markets with first overseas equipment delivery."         },
-  { year: "2010", title: "ISO Certification",  desc: "ISO 9001 certified, validating our quality management systems."               },
-  { year: "2015", title: "Reactor Division",   desc: "Dedicated reactor manufacturing division launched."                           },
-  { year: "2020", title: "500+ Projects",      desc: "Crossed the milestone of 500 successfully delivered projects."                },
-  { year: "2024", title: "Global Reach",       desc: "Serving clients across 12+ countries with a growing international portfolio." },
+  { year: "2020", title: "Founded",            desc: "Established in India with a vision to serve the process equipment sector."     },
+  { year: "2021", title: "Reactor Division",   desc: "Dedicated reactor manufacturing division launched."                           },
+  { year: "2022", title: "ISO Certification",  desc: "ISO 9001 certified, validating our quality management systems."               },
+  { year: "2023", title: "Global Reach",       desc: "Serving clients across 6+ countries with a growing international portfolio." },
+  { year: "2023", title: "First Export Order", desc: "Entered international markets with first overseas equipment delivery."         },
+  { year: "2025", title: "45+ Projects",      desc: "Crossed the milestone of 500 successfully delivered projects."                },
+  
 ];
 //
 // ─── Why Us ───────────────────────────────────────────────────

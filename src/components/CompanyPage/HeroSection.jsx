@@ -76,9 +76,9 @@ export default function HeroSection() {
           </h1>
 
           <p className="hero-description">
-            25+ years manufacturing Paint, Coating, Process & Chemical Plant
+            5+ years manufacturing Paint, Coating, Process & Chemical Plant
             Equipment, Reactors and Fabrication solutions — trusted across India
-            and 12+ countries.
+            and 6+ countries.
           </p>
 
           <div className="hero-buttons">

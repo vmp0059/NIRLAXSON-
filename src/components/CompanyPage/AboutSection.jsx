@@ -64,7 +64,7 @@ export default function AboutSection() {
             </h2>
 
             <p className="about-text">
-              Founded in 1999, Nirlaxson Industries manufactures precision
+              Founded in 2020, Nirlaxson Industries manufactures precision
               equipment for paint, coating, chemical and process industries.
               We combine deep domain expertise with innovative fabrication
               to deliver machinery that performs under pressure.
