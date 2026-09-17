@@ -46,15 +46,25 @@ function Footer() {
 
           <p>
             <FaMapMarkerAlt className="icon" />
+            <h6>Factory Address</h6>
+            J-156,MIDC Tarapur,<br />
+            Boisar, Palghar - 401501, Maharashtra, India
+          </p>
+
+          <p>
+            <FaMapMarkerAlt className="icon" />
+            <h5>Office Address</h5>
             B No C - 103, Balaji Complex, Parnali Naka,<br />
             Boisar, Palghar - 401501, Maharashtra, India
           </p>
+
+          
 
         <p className="contact-info">
   <FaPhoneAlt className="icon" />
 
   <a href="tel:+919860480063">
-    +91 9860-480-063
+    +91 9860480063
   </a>
   <br />
 
@@ -63,9 +73,7 @@ function Footer() {
   </a>
   <br />
 
-  <a href="tel:+919860480063">
-    +91 9860480063
-  </a>
+  
 </p>
 
 <p className="contact-info">
