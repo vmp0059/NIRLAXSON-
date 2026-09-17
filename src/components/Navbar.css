@@ -33,7 +33,7 @@
 
 .navbar-row {
   width: 100%;
-  min-height: 100px;
+  min-height: 80px;
 
   padding: 8px 44px;
 
@@ -89,20 +89,20 @@
 
 .nav-brand-name,
 .nav-brand-sub {
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
 
-  font-weight: 800;
+  font-weight: 510;
   letter-spacing: 2px;
 
   color: var(--blue-950);
 }
 
 .nav-brand-name {
-  font-size: 34px;
+  font-size: 32px;
 }
 
 .nav-brand-sub {
-  font-size: 34px;
+  font-size: 32px;
 }
 
 
