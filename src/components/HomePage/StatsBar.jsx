@@ -2,10 +2,10 @@
 import "./StatsBar.css";
 
 const stats = [
-  { number: "2015", label: "Year Founded" },
-  { number: "10+", label: "Years Experience" },
+  { number: "2020", label: "Year Founded" },
+  { number: "5+", label: "Years Experience" },
   { number: "500+", label: "Products Delivered" },
-  { number: "15+", label: "Team Members" },
+  { number: "10+", label: "Team Members" },
   { number: "01", label: "Production Line" },
 ];
 

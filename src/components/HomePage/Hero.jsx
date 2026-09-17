@@ -124,7 +124,7 @@ function Hero() {
           style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="hero-overlay">
-            <h4 className="anim-tag">Founded in 2015</h4>
+            <h4 className="anim-tag">Founded in 2020</h4>
             <h1 className="anim-title">Nirlaxson Industries</h1>
             <p className="anim-desc">
               Delivering industrial innovation and machinery solutions for
