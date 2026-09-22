@@ -46,7 +46,7 @@ function Footer() {
 
           <p>
             <FaMapMarkerAlt className="icon" />
-            <h6>Factory Address</h6>
+            <h5>Factory Address</h5>
             J-156,MIDC Tarapur,<br />
             Boisar, Palghar - 401501, Maharashtra, India
           </p>

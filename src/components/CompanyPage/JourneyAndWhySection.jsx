@@ -83,7 +83,7 @@ export default function JourneyAndWhySection() {
           </div>
 
           <h2 className="cp-heading cp-heading-margin">
-            25 Years of Excellence
+            5 Years of Excellence
           </h2>
 
           {timeline.map((item, i) => {
