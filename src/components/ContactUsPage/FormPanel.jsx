@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { FaPaperPlane, FaCommentDots } from "react-icons/fa";
 import ContactForm from "./ContactForm";
 import FeedbackForm from "./FeedbackForm";
@@ -19,6 +20,18 @@ const TABS = [
 
 export default function FormPanel() {
   const [activeTab, setActiveTab] = useState("contact");
+  const { search } = useLocation();
+
+  // Footer deep links: /contact?tab=feedback opens the feedback tab, and
+  // /contact?type=quote must show the message tab, where the quote form is.
+  // Set after mount so the pre-rendered HTML and the first render agree;
+  // doing it during render would cause a hydration mismatch.
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- must wait until after hydration
+    if (params.get("tab") === "feedback") setActiveTab("feedback");
+    else if (params.get("type") === "quote") setActiveTab("contact");
+  }, [search]);
 
   return (
     <div className="form-panel">

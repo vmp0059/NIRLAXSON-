@@ -13,6 +13,33 @@ export function ErrorMsg({ msg }) {
 }
 
 /**
+ * Honeypot - a field people never see or reach, so only bots fill it in.
+ * Off-screen and out of the layout (absolutely positioned), hidden from
+ * screen readers and skipped by Tab. The server silently drops any
+ * submission where it has a value.
+ */
+export function Honeypot({ value, onChange }) {
+  return (
+    <div
+      aria-hidden="true"
+      style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}
+    >
+      <label>
+        Website
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </label>
+    </div>
+  );
+}
+
+/**
  * Field - Reusable text input with label and error display
  * Supports: text, email, tel, password, etc.
  */

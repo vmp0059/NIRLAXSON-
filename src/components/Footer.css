@@ -41,7 +41,9 @@
 
 /* ── TEXT ── */
 
-.footer-col p {
+/* .footer-address is a <div>: it holds a heading, which a <p> may not. */
+.footer-col p,
+.footer-col .footer-address {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.7;

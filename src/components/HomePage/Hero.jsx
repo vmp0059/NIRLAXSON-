@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import heroImage from "../../assets/products/heroImage.jpeg";
+import heroImage from "../../assets/products/heroImage.webp";
 import "./Hero.css";
 
-import ProductImage1 from "../../assets/products/HighSpeedDissolver.png";
-import ProductImage2 from "../../assets/products/RibbonBlender.png";
-import ProductImage3 from "../../assets/products/ButterflyMixer.png";
-import ProductImage4 from "../../assets/products/BeadMill.png";
+import ProductImage1 from "../../assets/products/HighSpeedDissolver.webp";
+import ProductImage2 from "../../assets/products/RibbonBlender.webp";
+import ProductImage3 from "../../assets/products/ButterflyMixer.webp";
+import ProductImage4 from "../../assets/products/BeadMill.webp";
 
 import { products } from "../../assets/products/data";
 import { getProductSlug } from "../../utils/product";
@@ -125,7 +125,8 @@ function Hero() {
         >
           <div className="hero-overlay">
             <h4 className="anim-tag">Founded in 2020</h4>
-            <h1 className="anim-title">Nirlaxson Industries</h1>
+            {/* Styled like a heading, but the home page's <h1> is the Welcome title. */}
+            <div className="anim-title hero-brand-title">Nirlaxson Industries</div>
             <p className="anim-desc">
               Delivering industrial innovation and machinery solutions for
               modern manufacturing needs.

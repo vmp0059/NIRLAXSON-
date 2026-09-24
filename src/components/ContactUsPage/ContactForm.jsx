@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { FaCheckCircle, FaPaperPlane } from "react-icons/fa";
-import { Field, ErrorMsg } from "./FormField";
+import { Field, ErrorMsg, Honeypot } from "./FormField";
 import QuoteForm from "./QuoteForm";
 import QuoteSummary from "./QuoteSummary";
+import { submitEnquiry, mountedAt } from "./submitEnquiry";
 import "./ContactForm.css";
 
 const INQUIRY_TYPES = [
@@ -59,8 +61,20 @@ export default function ContactForm() {
   const [showQuoteSummary, setShowQuoteSummary] = useState(false);
   const [errors, setErrors] = useState({});
   const [quoteErrors, setQuoteErrors] = useState({});
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
+  const [startedAt] = useState(mountedAt);
+  const [honeypot, setHoneypot] = useState("");
 
   const isQuoteInquiry = form.inquiryType === "Request a Quote";
+
+  // /contact?type=quote (footer "Request a Quote") preselects the quote form.
+  const { search } = useLocation();
+  useEffect(() => {
+    if (new URLSearchParams(search).get("type") === "quote")
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- must wait until after hydration
+      setForm((prev) => ({ ...prev, inquiryType: "Request a Quote" }));
+  }, [search]);
 
   /* ── Validation ── */
 
@@ -122,11 +136,42 @@ export default function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  /* Sends to /api/enquiry.php. The success screen only shows once the
+     server confirms the enquiry was received. */
+  const send = async (payload) => {
+    if (sending) return null;
+    setSending(true);
+    setSendError("");
+    const result = await submitEnquiry(payload, startedAt);
+    setSending(false);
+    if (!result.ok) {
+      if (result.fields) setErrors((prev) => ({ ...prev, ...result.fields }));
+      setSendError(result.message);
+    }
+    return result;
+  };
+
+  const contactPayload = () => ({
+    firstName: form.firstName,
+    lastName: form.lastName,
+    email: form.email,
+    phone: form.phone,
+    company: form.company,
+    inquiryType: form.inquiryType,
+    message: form.message,
+    website: honeypot,
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
-    setSubmitted(true);
+    const result = await send({
+      ...contactPayload(),
+      kind: "enquiry",
+      selectedProducts: form.selectedProducts,
+    });
+    if (result?.ok) setSubmitted(true);
   };
 
   const handleQuoteSubmit = (e) => {
@@ -136,7 +181,24 @@ export default function ContactForm() {
     setShowQuoteSummary(true);
   };
 
-  const handleQuoteConfirm = () => setQuoteSubmitted(true);
+  const handleQuoteConfirm = async () => {
+    const result = await send({
+      ...contactPayload(),
+      kind: "quote",
+      selectedProducts: quoteForm.selectedProducts,
+      capacity: quoteForm.capacity,
+      material: quoteForm.customMaterial || quoteForm.material,
+      industry: quoteForm.customIndustry || quoteForm.industry,
+      quantity: quoteForm.quantity,
+      deliveryDate: quoteForm.deliveryDate,
+      location: quoteForm.location,
+      budgetRange: quoteForm.budgetRange,
+      additionalRequirements: quoteForm.additionalRequirements,
+    });
+    if (result?.ok) setQuoteSubmitted(true);
+    // The server rejected a field: go back to the form so it can be seen.
+    else if (result?.fields) setShowQuoteSummary(false);
+  };
 
   const handleReset = () => {
     setForm(INITIAL_FORM);
@@ -146,6 +208,7 @@ export default function ContactForm() {
     setSubmitted(false);
     setQuoteSubmitted(false);
     setShowQuoteSummary(false);
+    setSendError("");
   };
 
   /* ── Render ── */
@@ -177,12 +240,15 @@ export default function ContactForm() {
           onReset={handleReset}
         />
       ) : showQuoteSummary ? (
-        <QuoteSummary
-          form={form}
-          quoteForm={quoteForm}
-          onConfirm={handleQuoteConfirm}
-          onEdit={() => setShowQuoteSummary(false)}
-        />
+        <>
+          <QuoteSummary
+            quoteForm={quoteForm}
+            onConfirm={handleQuoteConfirm}
+            onEdit={() => { setSendError(""); setShowQuoteSummary(false); }}
+          />
+          {sending && <p className="contact-privacy-note">Sending…</p>}
+          <ErrorMsg msg={sendError} />
+        </>
       ) : (
         /* ── Main Form ── */
         <form
@@ -190,6 +256,8 @@ export default function ContactForm() {
           onSubmit={isQuoteInquiry ? handleQuoteSubmit : handleSubmit}
           noValidate
         >
+          <Honeypot value={honeypot} onChange={setHoneypot} />
+
           {/* Basic Info */}
           <div className="contact-form-row">
             <Field
@@ -310,9 +378,11 @@ export default function ContactForm() {
             {errors.message && <ErrorMsg msg={errors.message} />}
           </div>
 
+          <ErrorMsg msg={sendError} />
+
           <div className="contact-submit-row">
-            <button type="submit" className="contact-submit-btn">
-              {isQuoteInquiry ? "Review Quote" : "Send Message"}
+            <button type="submit" className="contact-submit-btn" disabled={sending}>
+              {sending ? "Sending…" : isQuoteInquiry ? "Review Quote" : "Send Message"}
               <FaPaperPlane style={{ fontSize: 14 }} />
             </button>
             <p className="contact-privacy-note">

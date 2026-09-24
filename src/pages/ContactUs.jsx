@@ -7,17 +7,17 @@
  * Component tree:
  *   ContactUs
  *   ├── ContactHero
- *   ├── (body grid)
- *   │   ├── ContactInfo
- *   │   └── ContactForm        ← handles General / Product / Quote flows
- *   │       └── QuoteForm      ← rendered inside ContactForm when "Request a Quote"
- *   │       └── QuoteSummary   ← rendered inside ContactForm before final submit
- *   └── FeedbackForm           ← standalone dark-background section below
+ *   └── (body grid)
+ *       ├── ContactInfo
+ *       └── FormPanel          ← tabs: "Send a Message" / "Give Feedback"
+ *           ├── ContactForm    ← General / Product / Quote flows
+ *           │   ├── QuoteForm      ← shown when "Request a Quote" is selected
+ *           │   └── QuoteSummary   ← review step before the quote is sent
+ *           └── FeedbackForm
  */
 
 import ContactHero from "../components/ContactUsPage/ContactHero";
 import ContactInfo from "../components/ContactUsPage/ContactInfo";
-import ContactForm from "../components/ContactUsPage/ContactForm";
 import FormPanel from "../components/ContactUsPage/FormPanel";
 
 

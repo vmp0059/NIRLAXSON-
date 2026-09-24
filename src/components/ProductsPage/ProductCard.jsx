@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./ProductCard.css";
 
 function CardImage({ src, alt }) {
-  const [broken, setBroken] = useState(false);
-
-  useEffect(() => setBroken(false), [src]);
+  // Remembers which src failed, so a new src gets a fresh attempt.
+  const [failedSrc, setFailedSrc] = useState(null);
+  const broken = failedSrc === src;
 
   if (!src || broken) {
     return (
@@ -14,7 +14,15 @@ function CardImage({ src, alt }) {
     );
   }
 
-  return <img src={src} alt={alt} onError={() => setBroken(true)} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      onError={() => setFailedSrc(src)}
+    />
+  );
 }
 
 export default function ProductCard({

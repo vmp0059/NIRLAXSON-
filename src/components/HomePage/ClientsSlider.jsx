@@ -2,31 +2,31 @@ import "./ClientsSlider.css";
 
 const clients = [
   { name: "Accurex", logo: "/clients/Accurex.jpg" },
-  { name: "Advance Paints", logo: "/clients/Advance Paints.jpg" },
-  { name: "Anchor", logo: "/clients/Anchor.jpg" },
-  { name: "Apurva", logo: "/clients/Apurva.jpg" },
-  { name: "Astra", logo: "/clients/Astra.jpg" },
+  { name: "Advance Paints", logo: "/clients/Advance Paints.webp" },
+  { name: "Anchor", logo: "/clients/Anchor.webp" },
+  { name: "Apurva", logo: "/clients/Apurva.webp" },
+  { name: "Astra", logo: "/clients/Astra.webp" },
 
-  { name: "Borosil", logo: "/clients/Borosil.jpg" },
-  { name: "Connell", logo: "/clients/Connell.jpg" },
-  { name: "Duraklean", logo: "/clients/Duraklean.jpg" },
+  { name: "Borosil", logo: "/clients/Borosil.webp" },
+  { name: "Connell", logo: "/clients/Connell.webp" },
+  { name: "Duraklean", logo: "/clients/Duraklean.webp" },
   { name: "Global Paints", logo: "/clients/Global Paints.jpg" },
-  { name: "JKcement", logo: "/clients/JKcement.jpg" },
+  { name: "JKcement", logo: "/clients/JKcement.webp" },
 
-  { name: "JSW Paints", logo: "/clients/JSWpaints.png" },
-  { name: "JSW Steel", logo: "/clients/JSWsteel.png" },
-  { name: "Kupsa", logo: "/clients/Kupsa.jpg" },
+  { name: "JSW Paints", logo: "/clients/JSWpaints.webp" },
+  { name: "JSW Steel", logo: "/clients/JSWsteel.webp" },
+  { name: "Kupsa", logo: "/clients/Kupsa.webp" },
   { name: "New Alliance", logo: "/clients/New Alliance.jpg" },
-  { name: "Prime", logo: "/clients/Prime.jpg" },
+  { name: "Prime", logo: "/clients/Prime.webp" },
 
   { name: "RAND", logo: "/clients/RAND.jpg" },
   { name: "Shubham", logo: "/clients/Shubham.jpg" },
-  { name: "Spinx", logo: "/clients/Spinx.jpg" },
+  { name: "Spinx", logo: "/clients/Spinx.webp" },
   { name: "Supranav", logo: "/clients/Supranav.jpg" },
   { name: "Teknovace", logo: "/clients/Teknovace.jpg" },
 
-  { name: "Victory", logo: "/clients/Victory.jpg" },
-  { name: "Vinayak Chemex", logo: "/clients/Vinayak Chemex.jpg" },
+  { name: "Victory", logo: "/clients/Victory.webp" },
+  { name: "Vinayak Chemex", logo: "/clients/Vinayak Chemex.webp" },
   { name: "Wellsun", logo: "/clients/Wellsun.jpg" },
 ];
 
@@ -58,6 +58,8 @@ function ClientsSlider() {
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ))}

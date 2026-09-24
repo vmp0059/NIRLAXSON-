@@ -1,5 +1,5 @@
 import "./ProductsHero.css";
-import heroImage from "../../assets/products/heroImage.jpeg";
+import heroImage from "../../assets/products/heroImage.webp";
 
 export default function ProductsHero() {
   return (

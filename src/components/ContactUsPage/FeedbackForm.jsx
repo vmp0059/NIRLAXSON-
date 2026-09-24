@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaCheckCircle, FaStar, FaRegStar, FaCommentDots } from "react-icons/fa";
-import { Field, ErrorMsg } from "./FormField";
+import { Field, ErrorMsg, Honeypot } from "./FormField";
+import { submitEnquiry, mountedAt } from "./submitEnquiry";
 import "./FeedbackForm.css";
 
 const EXPERIENCE_TYPES = [
@@ -31,6 +32,10 @@ export default function FeedbackForm() {
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
+  const [startedAt] = useState(mountedAt);
+  const [honeypot, setHoneypot] = useState("");
 
   const validate = () => {
     const e = {};
@@ -54,14 +59,40 @@ export default function FeedbackForm() {
     if (errors.rating) setErrors((prev) => ({ ...prev, rating: undefined }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
     }
-    setSubmitted(true);
+    if (sending) return;
+    setSending(true);
+    setSendError("");
+    const result = await submitEnquiry(
+      {
+        kind: "feedback",
+        firstName: form.name,
+        email: form.email,
+        rating: String(form.rating),
+        experienceType: form.experienceType,
+        recommend: form.recommend,
+        message: form.comment,
+        website: honeypot,
+      },
+      startedAt
+    );
+    setSending(false);
+    if (result.ok) {
+      setSubmitted(true);
+    } else {
+      // The server names fields as the contact form does; map them to ours.
+      if (result.fields) {
+        const { firstName, email, message } = result.fields;
+        setErrors((prev) => ({ ...prev, name: firstName, email, comment: message }));
+      }
+      setSendError(result.message);
+    }
   };
 
   const handleReset = () => {
@@ -76,6 +107,7 @@ export default function FeedbackForm() {
     });
     setErrors({});
     setSubmitted(false);
+    setSendError("");
   };
 
   const ratingLabels = ["", "Poor", "Fair", "Good", "Very Good", "Excellent"];
@@ -119,6 +151,8 @@ export default function FeedbackForm() {
             onSubmit={handleSubmit}
             noValidate
           >
+            <Honeypot value={honeypot} onChange={setHoneypot} />
+
             {/* Name + Email */}
             <div className="feedback-form-row">
               <Field
@@ -239,9 +273,11 @@ export default function FeedbackForm() {
               {errors.comment && <ErrorMsg msg={errors.comment} />}
             </div>
 
+            <ErrorMsg msg={sendError} />
+
             <div className="feedback-submit-row">
-              <button type="submit" className="feedback-submit-btn">
-                Submit Feedback
+              <button type="submit" className="feedback-submit-btn" disabled={sending}>
+                {sending ? "Sending…" : "Submit Feedback"}
               </button>
               <p className="feedback-privacy-note">
                 Your feedback is confidential and used only to improve our
