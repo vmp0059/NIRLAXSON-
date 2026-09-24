@@ -1,0 +1,87 @@
+# =====================================================================
+#  nirlaxsonindustries.com — Apache / LiteSpeed configuration
+#
+#  Every page is a real, pre-rendered HTML file (npm run build):
+#    /                    -> index.html
+#    /about               -> about.html
+#    /products/bead-mill  -> products/bead-mill.html
+#
+#  >>> NEVER add a catch-all rewrite to /index.html to this file. <<<
+#  That makes every made-up URL return 200 with the home page, which Google
+#  treats as endless duplicate pages. Unknown URLs must return a real 404.
+# =====================================================================
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+# /products is both products.html and the products/ folder; without this
+# Apache would redirect it to /products/ before the rewrite below runs.
+DirectorySlash Off
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ── Force HTTPS ────────────────────────────────────────────────────
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://nirlaxsonindustries.com/$1 [R=301,L]
+
+  # ── Canonical host: non-www ────────────────────────────────────────
+  RewriteCond %{HTTP_HOST} ^www\.nirlaxsonindustries\.com$ [NC]
+  RewriteRule ^(.*)$ https://nirlaxsonindustries.com/$1 [R=301,L]
+
+  # ── One URL per page: drop /index.html, .html and trailing slashes ──
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/([^\s?]+)\.html[\s?]
+  RewriteCond %{REQUEST_URI} !^/404\.html$
+  RewriteRule ^ /%1 [R=301,L]
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # ── Serve /about from about.html ───────────────────────────────────
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)$ /$1.html [L]
+</IfModule>
+
+# ── Security headers ─────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header unset X-Powered-By
+  # Enable once HTTPS is confirmed on every subdomain in use:
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── Correct MIME types ───────────────────────────────────────────────
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
+
+# ── Compression ──────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# ── Caching ──────────────────────────────────────────────────────────
+# Expiry and Cache-Control are guarded separately: a `Header` line outside
+# <IfModule mod_headers.c> is a 500 error on any host without that module.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  <FilesMatch "\.(webp|jpe?g|png|gif|svg|ico|pdf)$">
+    ExpiresDefault "access plus 6 months"
+  </FilesMatch>
+</IfModule>
+<IfModule mod_headers.c>
+  # Vite puts a content hash in every file under /assets: safe to cache forever.
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML must revalidate, or a new upload takes days to reach repeat visitors.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

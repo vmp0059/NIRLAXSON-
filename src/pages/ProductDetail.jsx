@@ -27,9 +27,9 @@ import "./ProductDetail.css";
  * nothing at the React layer can recover from it.
  */
 function SafeImage({ src, alt, className }) {
-  const [broken, setBroken] = useState(false);
-
-  useEffect(() => setBroken(false), [src]);
+  // Remembers which src failed, so a new src gets a fresh attempt.
+  const [failedSrc, setFailedSrc] = useState(null);
+  const broken = failedSrc === src;
 
   if (!src || broken) {
     return (
@@ -45,7 +45,7 @@ function SafeImage({ src, alt, className }) {
       src={src}
       alt={alt}
       className={className}
-      onError={() => setBroken(true)}
+      onError={() => setFailedSrc(src)}
     />
   );
 }
@@ -56,36 +56,17 @@ export default function ProductDetail() {
 
   const product = findProductBySlug(products, slug);
 
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  // The selected thumbnail belongs to one product. Switching to another
+  // product's page starts from the first image, never a leftover selection.
+  const [selectedImage, setSelectedImage] = useState({ slug, index: 0 });
+  const activeImageIndex = selectedImage.slug === slug ? selectedImage.index : 0;
 
-  // Reset the active gallery image whenever the product (i.e. the slug)
-  // changes, so switching from one product's detail page to another never
-  // shows a leftover thumbnail selection from the previous product.
+  // Title and description are set by usePageMeta() from src/seo/pages.js,
+  // the same source the pre-rendered HTML uses.
+
+  // Always start a product page at the top — never inherit scroll
+  // position from whatever page/product was viewed previously.
   useEffect(() => {
-    setActiveImageIndex(0);
-  }, [product]);
-
-  // Title + meta description — no third-party SEO library is installed,
-  // so this is handled with plain DOM APIs, matching the rest of the app.
-  useEffect(() => {
-    document.title = product
-      ? product.seo?.title || `${product.name} | Nirlaxson Industries`
-      : "Product Not Found | Nirlaxson Industries";
-
-    const description = product
-      ? product.seo?.description || product.desc
-      : "The product you're looking for could not be found on Nirlaxson Industries.";
-
-    let metaTag = document.querySelector('meta[name="description"]');
-    if (!metaTag) {
-      metaTag = document.createElement("meta");
-      metaTag.setAttribute("name", "description");
-      document.head.appendChild(metaTag);
-    }
-    metaTag.setAttribute("content", description);
-
-    // Always start a product page at the top — never inherit scroll
-    // position from whatever page/product was viewed previously.
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [product]);
 
@@ -175,7 +156,7 @@ export default function ProductDetail() {
                       "product-detail-thumb" +
                       (i === activeImageIndex ? " active" : "")
                     }
-                    onClick={() => setActiveImageIndex(i)}
+                    onClick={() => setSelectedImage({ slug, index: i })}
                     aria-label={`Show image ${i + 1} of ${product.name}`}
                   >
                     <SafeImage src={img} alt={`${product.name} ${i + 1}`} />

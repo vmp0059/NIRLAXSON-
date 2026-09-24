@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Welcome.css"; // optional, for styling
-import SideImage from "../assets/products/SideImage.jpeg";
+import SideImage from "../assets/products/SideImage.webp";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -22,7 +22,12 @@ const Welcome = () => {
       <div className="welcome-container">
 
         <div className="welcome-image">
-          <img src={SideImage} alt="machine" />
+          <img
+            src={SideImage}
+            alt="Nirlaxson Industries dispersion machine with control panel at the Boisar factory"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <div className="welcome-content">

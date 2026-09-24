@@ -1,9 +1,9 @@
-import product1 from "./BeadMill.png";
-import product2 from "./ButterflyMixer.png";
-import product3 from "./HighSpeedDissolver.png";
-import product4 from "./PugMixer.png";
-import product5 from "./RibbonBlender.png";
-import product6 from "./TwinShaftMixer.png";
+import product1 from "./BeadMill.webp";
+import product2 from "./ButterflyMixer.webp";
+import product3 from "./HighSpeedDissolver.webp";
+import product4 from "./PugMixer.webp";
+import product5 from "./RibbonBlender.webp";
+import product6 from "./TwinShaftMixer.webp";
 
 // --- Newly migrated products (from legacy PHP pages) ---
 // NOTE: copy the image files from the delivered "products-images" folder
@@ -14,14 +14,14 @@ import productBallMill from "./Industrial-Ball-Mill-Machine.webp";
 import productCowlDiscBlade from "./Cowl-Disc-Blade.webp";
 import productCrossOverBench from "./Cross-Over-Bench.webp";
 import productElectricalControlPanel from "./Electrical-Control-Panel.webp";
-import productHydraulicLiftingDisperser from "./Hydraulic-Lifting-Disperser.png";
+import productHydraulicLiftingDisperser from "./Hydraulic-Lifting-Disperser.webp";
 import productHighSpeedDisperserMotorised from "./High-Speed-Disperser-Motori.jpg";
 import productSSReceiverVessels from "./SS-Receiver-Vessels.webp";
 import productMSReceiverVessels from "./MS-Receiver-Vessels.webp";
 import productSSTankMixingVessels from "./SS-Tank-Mixing-Vessels.webp";
 import productIndustrialWallPuttyPlant from "./Industrial-Wall-Putty-Plant.webp";
 import productLabStirrerMixer from "./Lab-Stirrer-Mixer.webp";
-import productLDOStorageTank from "./LDO-Storage-Tank.jpg";
+import productLDOStorageTank from "./LDO-Storage-Tank.webp";
 import productSSFilterDiscPlate from "./SS-Filter-Disc-Plate.webp";
 import productStainlessSteelHeatExchanger from "./Stainless-Steel-Heat-Exchanger.webp";
 import productSteelLimpetReactor from "./Steel-Limpet-Reactor.webp";
@@ -35,7 +35,7 @@ export const ALL = "All Products";
 const WHATSAPP_NUMBER = "919860480063";
 const buildWhatsAppLink = (productName) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `It's feedback from Nirlaxon Industries Website (www.nirlaxsonindustries.com). I'm interested in your ${productName}`
+    `It's feedback from Nirlaxson Industries Website (www.nirlaxsonindustries.com). I'm interested in your ${productName}`
   )}`;
 
 export const products = [

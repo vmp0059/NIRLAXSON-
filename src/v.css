@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap');
-
+/* Web fonts (Exo 2, Orbitron, Outfit) are loaded by a <link> in index.html,
+   so the browser fetches them in parallel with this stylesheet. */
 /* GLOBAL RESET */
 
 * {

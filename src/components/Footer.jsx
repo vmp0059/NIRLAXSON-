@@ -14,7 +14,7 @@ import {
 import { products } from "../assets/products/data";
 import { getProductSlug } from "../utils/product";
 
-// 5 real products from data.js shown in the footer's "Our Products" column.
+// Real products from data.js shown in the footer's "Our Products" column.
 // Chosen to match the previous placeholder labels as closely as possible by
 // actual product identity — "Bead Mill Machine", "Lab Stirrer", and
 // "Ball Mill Machine" map directly. "Industrial Disperser" and "Mixer
@@ -26,6 +26,10 @@ const FOOTER_PRODUCT_NAMES = [
   "Bead Mill",
   "Lab Stirrer Mixer",
   "Industrial Ball Mill Machine",
+  "High Speed Dissolver",
+  "Ribbon Blender",
+  "Attritor Mill Machine",
+  "Industrial Wall Putty Plant",
 ];
 
 const footerProducts = FOOTER_PRODUCT_NAMES
@@ -44,19 +48,19 @@ function Footer() {
         <div className="footer-col">
           <h3>Contact Details</h3>
 
-          <p>
+          <div className="footer-address">
             <FaMapMarkerAlt className="icon" />
             <h6>Factory Address</h6>
             J-156,MIDC Tarapur,<br />
             Boisar, Palghar - 401501, Maharashtra, India
-          </p>
+          </div>
 
-          <p>
+          <div className="footer-address">
             <FaMapMarkerAlt className="icon" />
             <h5>Office Address</h5>
             B No C - 103, Balaji Complex, Parnali Naka,<br />
             Boisar, Palghar - 401501, Maharashtra, India
-          </p>
+          </div>
 
           
 
@@ -152,12 +156,27 @@ function Footer() {
             </li>
 
             <li>
-              {/* No sitemap page exists in this project or the legacy site.
-                  Not creating a fake route — kept visually identical,
-                  non-navigating. */}
-              <a href="#" onClick={(e) => e.preventDefault()}>
-                Site Map
+              <Link to="/contact?type=quote">Request a Quote</Link>
+            </li>
+
+            <li>
+              <a href="/brochure.pdf" target="_blank" rel="noopener noreferrer">
+                Download Brochure
               </a>
+            </li>
+
+            <li>
+              <Link to="/contact?tab=feedback">Give Feedback</Link>
+            </li>
+
+            <li>
+              <a href="https://wa.me/919860480063" target="_blank" rel="noopener noreferrer">
+                WhatsApp Us
+              </a>
+            </li>
+
+            <li>
+              <a href="/sitemap.xml">Site Map</a>
             </li>
           </ul>
         </div>
@@ -181,7 +200,9 @@ function Footer() {
           <h3>Head Office</h3>
 
           <iframe
-            title="location"
+            title="Map: Nirlaxson Industries, Boisar, Maharashtra"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
             src="https://maps.google.com/maps?q=NIRLAXSON INDUSTRIES%20maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
           ></iframe>
         </div>

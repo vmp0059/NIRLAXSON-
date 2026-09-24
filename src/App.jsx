@@ -9,11 +9,13 @@ import Products       from "./pages/Products";
 import ProductDetail  from "./pages/ProductDetail";
 import ContactUs      from "./pages/ContactUs";
 import BrochureButton from "./components/BrochureButton/BrochureButton";
+import usePageMeta    from "./seo/usePageMeta";
 
 import "./App.css";
 
 function App() {
   const navigate = useNavigate();
+  usePageMeta();
 
   return (
     <>
@@ -40,6 +42,9 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/contact" element={<ContactUs />} />
+          {/* Unknown URLs render no page content; the server returns 404.html
+              with a real 404 status (see public/.htaccess). */}
+          <Route path="*" element={null} />
         </Routes>
         
       </div>

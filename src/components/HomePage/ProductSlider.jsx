@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProductSlider.css";
 
-import product1 from "../../assets/products/BeadMill.png";
-import product2 from "../../assets/products/ButterflyMixer.png";
-import product3 from "../../assets/products/HighSpeedDissolver.png";
-import product4 from "../../assets/products/PugMixer.png";
-import product5 from "../../assets/products/RibbonBlender.png";
-import product6 from "../../assets/products/TwinShaftMixer.png";
+import product1 from "../../assets/products/BeadMill.webp";
+import product2 from "../../assets/products/ButterflyMixer.webp";
+import product3 from "../../assets/products/HighSpeedDissolver.webp";
+import product4 from "../../assets/products/PugMixer.webp";
+import product5 from "../../assets/products/RibbonBlender.webp";
+import product6 from "../../assets/products/TwinShaftMixer.webp";
 
 import { products as allProducts } from "../../assets/products/data";
 import { getProductSlug } from "../../utils/product";
@@ -40,22 +40,22 @@ function ProductSlider() {
 
   const total = products.length;
 
+  const resetAuto = useCallback(() => {
+    clearInterval(autoRef.current);
+    autoRef.current = setInterval(() => {
+      setCenter((c) => (c + 1) % total);
+    }, 4000);
+  }, [total]);
+
   const go = (dir) => {
     setCenter((c) => (c + dir + total) % total);
     resetAuto();
   };
 
-  const resetAuto = () => {
-    clearInterval(autoRef.current);
-    autoRef.current = setInterval(() => {
-      setCenter((c) => (c + 1) % total);
-    }, 4000);
-  };
-
   useEffect(() => {
     resetAuto();
     return () => clearInterval(autoRef.current);
-  }, []);
+  }, [resetAuto]);
 
   // Resolves this slider's displayed product (by title) to its real
   // data.js record, so the featured card can navigate to a genuine
@@ -117,7 +117,7 @@ function ProductSlider() {
 
               {/* Product image */}
               <div className="ps-image-wrap">
-                <img src={product.img} alt={product.title} />
+                <img src={product.img} alt={product.title} loading="lazy" decoding="async" />
               </div>
 
               {/* Name + tag */}

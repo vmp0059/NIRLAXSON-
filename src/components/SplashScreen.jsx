@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/logo/image.png";
+import logo from "../assets/logo/image.webp";
 import "../App.css";
 import "./SplashScreen.css";
 export default function SplashScreen() {
@@ -24,9 +24,10 @@ return (
 
 <img src={logo} className="logo" alt="Nirlaxson Industries"/>
 
-<h1 className="company-name">
-NIRLAXON INDUSTRIES
-</h1>
+{/* Not an <h1>: it appears on every page, and each page has its own. */}
+<div className="company-name">
+NIRLAXSON INDUSTRIES
+</div>
 
 </div>
 

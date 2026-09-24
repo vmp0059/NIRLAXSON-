@@ -4,12 +4,11 @@ import "./QuoteSummary.css";
  * QuoteSummary renders a review card before final quote submission.
  *
  * Props:
- *  - form        : object – base contact form state (name, email)
  *  - quoteForm   : object – quote-specific form state
  *  - onConfirm   : fn     – called when user confirms submission
  *  - onEdit      : fn     – called to go back and edit
  */
-export default function QuoteSummary({ form, quoteForm, onConfirm, onEdit }) {
+export default function QuoteSummary({ quoteForm, onConfirm, onEdit }) {
   const getDisplayValue = (value) =>
     value && value.trim() ? value : "—";
 

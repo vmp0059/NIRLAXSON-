@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/logo/blue-logo.png";
+import logo from "../assets/logo/blue-logo.webp";
 import "./Navbar.css";
 
 function Navbar() {
@@ -42,10 +42,6 @@ function Navbar() {
     };
   }, [menuOpen]);
 
-  // Always keep the navbar visible while the mobile menu is open.
-  useEffect(() => {
-    if (menuOpen) setShowNavbar(true);
-  }, [menuOpen]);
 
   const links = [
     { label: "Home Page",       path: "/"         },
@@ -62,7 +58,7 @@ function Navbar() {
   };
 
   return (
-    <nav className={`navbar ${showNavbar ? "show" : "hide"} ${menuOpen ? "menu-open" : ""}`}>
+    <nav className={`navbar ${showNavbar || menuOpen ? "show" : "hide"} ${menuOpen ? "menu-open" : ""}`}>
       <div className="navbar-row">
         {/* ── Brand block: logo + name ── */}
         <div
@@ -76,7 +72,7 @@ function Navbar() {
         >
           <img
             src={logo}
-            alt="Nirlaxson Logo"
+            alt="Nirlaxson Industries logo"
             className="nav-logo"
           />
           <div className="nav-brand-text">
