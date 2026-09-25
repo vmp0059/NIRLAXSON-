@@ -227,11 +227,18 @@ $emailed = false;
  * already configured there, and SPF covers the IP. Nothing to sign up for and
  * nothing that can expire. */
 if (function_exists('mail')) {
+    /* SMTP forbids lines over 998 characters (RFC 5321). The HTML table is one
+     * unbroken line of 1,600+ characters, and it grows with the message, so
+     * Exim's transport ("message has lines too long for transport") refused
+     * longer enquiries after mail() had already returned true, and the bounce
+     * went to the unread MAIL_FROM mailbox. Base64 with chunk_split keeps every
+     * body line at 76 characters, whatever the visitor typed. */
+    $boundary = 'nx-' . bin2hex(random_bytes(12));
     $headers = [
         'From: Nirlaxson Website <' . $MAIL_FROM . '>',
         'Reply-To: ' . $encodeHeader('"' . $replyName . '"') . ' <' . $email . '>',
         'MIME-Version: 1.0',
-        'Content-Type: text/html; charset=UTF-8',
+        'Content-Type: multipart/alternative; boundary="' . $boundary . '"',
         'X-Mailer: nirlaxsonindustries.com',
     ];
     if ($MAIL_CC !== '') $headers[] = 'Cc: ' . $MAIL_CC;
@@ -239,8 +246,18 @@ if (function_exists('mail')) {
     $html = '<h2 style="font:700 18px sans-serif;color:#0d1b5e">' . htmlspecialchars($subject, ENT_QUOTES) . '</h2>'
           . '<table style="border-collapse:collapse">' . $rowsHtml . '</table>';
 
+    $body = "--$boundary\r\n"
+          . "Content-Type: text/plain; charset=UTF-8\r\n"
+          . "Content-Transfer-Encoding: base64\r\n\r\n"
+          . chunk_split(base64_encode($subject . "\n\n" . $rowsText))
+          . "--$boundary\r\n"
+          . "Content-Type: text/html; charset=UTF-8\r\n"
+          . "Content-Transfer-Encoding: base64\r\n\r\n"
+          . chunk_split(base64_encode($html))
+          . "--$boundary--\r\n";
+
     // -f sets the envelope sender so Exim signs and SPF-aligns correctly.
-    $emailed = @mail($MAIL_TO, $encodeHeader($subject), $html, implode("\r\n", $headers), '-f' . $MAIL_FROM);
+    $emailed = @mail($MAIL_TO, $encodeHeader($subject), $body, implode("\r\n", $headers), '-f' . $MAIL_FROM);
     if (!$emailed) error_log('enquiry.php: local mail() failed, trying Resend if configured');
 }
 
