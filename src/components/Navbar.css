@@ -1,11 +1,10 @@
 /* =========================================================
    NAVBAR
 ========================================================= */
-
 .navbar {
   width: 100%;
-  position: fixed;
-  top: 40px; /* height of the blue top bar */
+  position: sticky;
+  top: var(--topbar-h);
   left: 0;
   z-index: 1000;
 
@@ -23,7 +22,7 @@
 }
 
 .navbar.hide {
-  transform: translateY(-100%);
+  transform: translateY(0);
 }
 
 
