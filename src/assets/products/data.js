@@ -2,7 +2,7 @@ import product1 from "./BeadMill.webp";
 import product2 from "./ButterflyMixer.webp";
 import product3 from "./HighSpeedDissolver.webp";
 import product4 from "./PugMixer.webp";
-import product5 from "./RibbonBlender.webp";
+import product5 from "./RibbonBlender.png";
 import product6 from "./TwinShaftMixer.webp";
 
 // --- Newly migrated products (from legacy PHP pages) ---

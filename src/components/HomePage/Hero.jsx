@@ -4,7 +4,7 @@ import heroImage from "../../assets/products/heroImage.webp";
 import "./Hero.css";
 
 import ProductImage1 from "../../assets/products/HighSpeedDissolver.webp";
-import ProductImage2 from "../../assets/products/RibbonBlender.webp";
+import ProductImage2 from "../../assets/products/RibbonBlender.png";
 import ProductImage3 from "../../assets/products/ButterflyMixer.webp";
 import ProductImage4 from "../../assets/products/BeadMill.webp";
 

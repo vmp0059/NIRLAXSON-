@@ -50,7 +50,7 @@ function Footer() {
 
           <div className="footer-address">
             <FaMapMarkerAlt className="icon" />
-            <h6>Factory Address</h6>
+            <h5>Factory Address</h5>
             J-156,MIDC Tarapur,<br />
             Boisar, Palghar - 401501, Maharashtra, India
           </div>
@@ -83,14 +83,7 @@ function Footer() {
 <p className="contact-info">
   <FaEnvelope className="icon" />
 
-  <a
-    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@nirlaxsonindustries.com"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    info@nirlaxsonindustries.com
-  </a>
-  <br />
+
 
   <a
     href="https://mail.google.com/mail/?view=cm&fs=1&to=nirlaxson@gmail.com"

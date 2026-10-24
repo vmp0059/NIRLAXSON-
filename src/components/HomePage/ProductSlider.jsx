@@ -6,7 +6,7 @@ import product1 from "../../assets/products/BeadMill.webp";
 import product2 from "../../assets/products/ButterflyMixer.webp";
 import product3 from "../../assets/products/HighSpeedDissolver.webp";
 import product4 from "../../assets/products/PugMixer.webp";
-import product5 from "../../assets/products/RibbonBlender.webp";
+import product5 from "../../assets/products/RibbonBlender.png";
 import product6 from "../../assets/products/TwinShaftMixer.webp";
 
 import { products as allProducts } from "../../assets/products/data";

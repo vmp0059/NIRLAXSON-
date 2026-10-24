@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Welcome.css"; // optional, for styling
-import SideImage from "../assets/products/SideImage.webp";
+import SideImage from "../assets/products/SideImage.jpeg";
 
 const Welcome = () => {
   const navigate = useNavigate();
