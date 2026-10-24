@@ -10,24 +10,24 @@ import product6 from "./TwinShaftMixer.webp";
 // into src/assets/products/ before this will build. Filenames match the
 // legacy site exactly — nothing was renamed or invented.
 import productAttritorMill from "./Attritor-Mill.webp";
-import productBallMill from "./Industrial-Ball-Mill-Machine.webp";
-import productCowlDiscBlade from "./Cowl-Disc-Blade.webp";
-import productCrossOverBench from "./Cross-Over-Bench.webp";
-import productElectricalControlPanel from "./Electrical-Control-Panel.webp";
-import productHydraulicLiftingDisperser from "./Hydraulic-Lifting-Disperser.webp";
-import productHighSpeedDisperserMotorised from "./High-Speed-Disperser-Motori.jpg";
-import productSSReceiverVessels from "./SS-Receiver-Vessels.webp";
-import productMSReceiverVessels from "./MS-Receiver-Vessels.webp";
-import productSSTankMixingVessels from "./SS-Tank-Mixing-Vessels.webp";
-import productIndustrialWallPuttyPlant from "./Industrial-Wall-Putty-Plant.webp";
-import productLabStirrerMixer from "./Lab-Stirrer-Mixer.webp";
-import productLDOStorageTank from "./LDO-Storage-Tank.webp";
+import productBallMill from "./Industrial-Ball-Mill-Machine.png";
+import productCowlDiscBlade from "./Cowl-Disc-Blade.png";
+import productCrossOverBench from "./Cross-Over-Bench.png";
+import productElectricalControlPanel from "./Electrical-Control-Panel.png";
+import productHydraulicLiftingDisperser from "./Hydraulic-Lifting-Disperser.png";
+import productHighSpeedDisperserMotorised from "./High-Speed-Disperser-Motori.png";
+import productSSReceiverVessels from "./SS-Receiver-Vessels.png";
+import productMSReceiverVessels from "./MS-Receiver-Vessels.png";
+import productSSTankMixingVessels from "./SS-Tank-Mixing-Vessels.png";
+import productIndustrialWallPuttyPlant from "./Industrial-Wall-Putty-Plant.png";
+import productLabStirrerMixer from "./Lab-Stirrer-Mixer.png";
+import productLDOStorageTank from "./LDO-Storage-Tank.png";
 import productSSFilterDiscPlate from "./SS-Filter-Disc-Plate.webp";
-import productStainlessSteelHeatExchanger from "./Stainless-Steel-Heat-Exchanger.webp";
-import productSteelLimpetReactor from "./Steel-Limpet-Reactor.webp";
-import productMSStorageTank from "./MS-Storage-Tank.webp";
-import productSSTank from "./SS-Tank.webp";
-import productLiquidStorageTank from "./Liquid-Storage-Tank.webp";
+import productStainlessSteelHeatExchanger from "./Stainless-Steel-Heat-Exchanger.png";
+import productSteelLimpetReactor from "./Steel-Limpet-Reactor.png";
+import productMSStorageTank from "./MS-Storage-Tank.png";
+import productSSTank from "./SS-Tank.png";
+import productLiquidStorageTank from "./Liquid-Storage-Tank.png";
 
 export const ALL = "All Products";
 

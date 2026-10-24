@@ -1,8 +1,8 @@
+
 import { useState } from "react";
 import "./ProductCard.css";
 
 function CardImage({ src, alt }) {
-  // Remembers which src failed, so a new src gets a fresh attempt.
   const [failedSrc, setFailedSrc] = useState(null);
   const broken = failedSrc === src;
 
@@ -16,6 +16,7 @@ function CardImage({ src, alt }) {
 
   return (
     <img
+      className="product-card-product-img"
       src={src}
       alt={alt}
       loading="lazy"
@@ -38,20 +39,29 @@ export default function ProductCard({
       tabIndex={0}
       aria-label={`View details for ${product.name}`}
       onKeyDown={(e) => {
+        if (e.target !== e.currentTarget) return;
+
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onView(product);
         }
       }}
     >
+      {/* LARGE PRODUCT IMAGE SECTION */}
       <div className="product-card-image">
-        <span className="product-card-tag-badge">
-          {product.tag}
-        </span>
+        {product.tag && (
+          <span className="product-card-tag-badge">
+            {product.tag}
+          </span>
+        )}
 
-        <CardImage src={product.img} alt={product.name} />
+        <CardImage
+          src={product.img}
+          alt={product.name}
+        />
       </div>
 
+      {/* COMPACT PRODUCT INFORMATION */}
       <div className="product-card-body">
         <h3 className="product-card-name">
           {product.name}
@@ -62,7 +72,7 @@ export default function ProductCard({
         </p>
 
         <div className="product-card-specs">
-          {product.specs.slice(0, 3).map((spec) => (
+          {(product.specs ?? []).slice(0, 3).map((spec) => (
             <div
               key={spec.label}
               className="product-card-spec"
@@ -79,8 +89,10 @@ export default function ProductCard({
         </div>
       </div>
 
+      {/* COMPACT ACTION BUTTONS */}
       <div className="product-card-footer">
         <button
+          type="button"
           className="product-card-cta"
           onClick={(e) => {
             e.stopPropagation();
@@ -91,6 +103,7 @@ export default function ProductCard({
         </button>
 
         <button
+          type="button"
           className="product-card-inquiry"
           onClick={(e) => {
             e.stopPropagation();
